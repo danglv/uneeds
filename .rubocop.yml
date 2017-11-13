@@ -14,9 +14,12 @@ AllCops:
     - Guardfile
     - Rakefile
     - "config/*"
+    - "config/**/*"
 
 Layout/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
+Layout/AlignHash:
+  Enabled: false
 
 Metrics/AbcSize:
   Exclude:

@@ -1,0 +1,53 @@
+= simple_form_for @transfer do |f|
+  .row
+    .col-md-offset-3.col-md-6
+      .panel.panel-default
+        .panel-heading
+          | transfer info
+        .panel-body
+          = f.fields_for :payment do |payment|
+            = payment.hidden_field :exchange_id, value: 1
+            label.control-label.string.required
+              <abbr title="required">*</abbr>
+              | Amount
+            .input-group.form-group.string.required
+              = payment.text_field :amount, class: "form-control string required"
+              span.input-group-addon
+                .ensign.jpy
+            i.fa.fa-exchange.btn.btn-success
+            .input-group.form-group.string.required
+              = payment.text_field :amount, class: "form-control string required"
+              span.input-group-addon
+                .ensign.cny
+  .row
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading
+          | Sender info
+        .panel-body
+          = f.fields_for :sender do |sender|
+            = sender.input :first_name
+            = sender.input :last_name
+            = sender.date_field :birthday, class: "form-control"
+            .form-group
+              = sender.country_select :country, class: "form-control"
+            = sender.input :city
+            = sender.input :phone
+            = sender.input :post_code
+            = sender.input :occupation
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading
+          | Recipient info
+        .panel-body
+          = f.fields_for :recipient do |recipient|
+            = recipient.input :full_name
+            = recipient.input :email
+            = recipient.input :account_number
+            = recipient.input :account_type
+            = recipient.input :bank_name
+            = recipient.input :branch_name
+            = recipient.input :currency
+            = recipient.input :ibank
+  = f.submit  "Create", class: 'btn btn-primary'
+

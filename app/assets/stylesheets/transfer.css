@@ -1,0 +1,15 @@
+.jpy {
+  background: url(/assets/ensigns/jpy.png);
+  width: 20px;
+  height: 20px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+.cny {
+  background-image: url(/assets/ensigns/cny.png);
+  width: 20px;
+  height: 20px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
