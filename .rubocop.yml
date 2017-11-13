@@ -13,6 +13,7 @@ AllCops:
     - Gemfile
     - Guardfile
     - Rakefile
+    - "config/*"
 
 Layout/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
