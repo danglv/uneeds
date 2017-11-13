@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+ruby "2.3.3"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -12,6 +13,10 @@ gem "bootstrap_form", "~> 2.3"
 gem "bootstrap-sass", "~> 3.3"
 gem "bootsnap", ">= 1.1.0", :require => false
 gem "coffee-rails", "~> 4.2"
+gem "devise"
+gem "devise-bootstrap-views"
+gem "devise-i18n"
+gem "devise-i18n-views"
 gem "dotenv-rails", ">= 2.0.0"
 gem "font-awesome-rails"
 gem "jquery-rails"
