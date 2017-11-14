@@ -25,4 +25,7 @@
 class Recipient < ApplicationRecord
   belongs_to :user
   has_many :transfers, dependent: :nullify
+
+  validates :account_number, :account_type, :bank_name, :branch_name, :currency,
+            :email, :full_name, :ibank, :type, presence: true
 end

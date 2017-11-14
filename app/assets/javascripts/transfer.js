@@ -1,5 +1,6 @@
 $(function() {
   $(".exchange_cny").toggle();
+  $(".sender_info_name_cny").toggle();
   $('.fa-exchange').on("click", function(){
     var exchange_id = $("#transfer_payment_exchange_id").val();
     var new_exchange_id = (exchange_id % 2) + 1;
@@ -9,6 +10,9 @@ $(function() {
     jpy.removeClass("jpy").addClass("cny");
     cny.removeClass("cny").addClass("jpy");
     $(".exchange").children().each(function(){
+      $(this).toggle();
+    });
+    $(".sender_info_name").children().each(function(){
       $(this).toggle();
     });
 

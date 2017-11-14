@@ -33,8 +33,14 @@
         .panel-body
           = f.fields_for :sender do |sender|
             = sender.hidden_field :user_id, value: current_user.id
-            = sender.input :first_name
-            = sender.input :last_name
+            = sender.input :address
+            .sender_info_name
+              .sender_info_name_cny
+                = sender.input :first_name
+                = sender.input :last_name
+              .sender_info_name_jpy
+                = sender.input :first_name_katakana
+                = sender.input :last_name_katakana
             = sender.input :birthday, as: :date, html5: true
             = sender.input :country, as: :string
             = sender.input :city
@@ -56,5 +62,6 @@
             = recipient.input :branch_name
             = recipient.input :currency
             = recipient.input :ibank
+            = recipient.input :type
   = f.submit  "Create", class: 'btn btn-primary'
 
