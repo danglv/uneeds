@@ -33,3 +33,17 @@
   vertical-align: middle;
   border-left: 0px;
 }
+
+.transfer_form_info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+
+.transfer_form_col {
+  display: flex;
+  flex-direction: column;
+  border-right: solid 1px;
+}

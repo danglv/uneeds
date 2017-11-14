@@ -5,7 +5,7 @@ class CreateRecipients < ActiveRecord::Migration[5.1]
       t.string :full_name
       t.string :ibank
       t.string :currency
-      t.string :type
+      t.string :kind
       t.string :bank_name
       t.string :branch_name
       t.string :account_number

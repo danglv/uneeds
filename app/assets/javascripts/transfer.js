@@ -50,4 +50,10 @@ $(function() {
   $("#transfer_amount").on("change", function(){
     change_amount();
   });
+
+  $(".panel-body").each(function(){
+    if ($(this).find(".has-error").length != 0) {
+      $(this).addClass("in");
+    }
+  });
 });

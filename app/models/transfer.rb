@@ -34,7 +34,7 @@ class Transfer < ApplicationRecord
     sender_attributes: %i[first_name last_name birthday country city phone
                           post_code occupation user_id first_name_katakana
                           last_name_katakana address],
-    recipient_attributes: %i[full_name email account_number account_type type
+    recipient_attributes: %i[full_name email account_number account_type kind
                              bank_name branch_name currency ibank user_id]
   ].freeze
 

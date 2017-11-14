@@ -12,7 +12,7 @@
 #  full_name      :string
 #  ibank          :string
 #  id             :integer          not null, primary key
-#  type           :string
+#  kind           :string
 #  updated_at     :datetime         not null
 #  user_id        :integer
 #
@@ -27,5 +27,5 @@ class Recipient < ApplicationRecord
   has_many :transfers, dependent: :nullify
 
   validates :account_number, :account_type, :bank_name, :branch_name, :currency,
-            :email, :full_name, :ibank, :type, presence: true
+            :email, :full_name, :ibank, :kind, presence: true
 end

@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20171113070108) do
     t.string "full_name"
     t.string "ibank"
     t.string "currency"
-    t.string "type"
+    t.string "kind"
     t.string "bank_name"
     t.string "branch_name"
     t.string "account_number"
