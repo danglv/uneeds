@@ -7,18 +7,24 @@
         .panel-body
           = f.fields_for :payment do |payment|
             = payment.hidden_field :exchange_id, value: 1
-            label.control-label.string.required
-              <abbr title="required">*</abbr>
-              | Amount
-            .input-group.form-group.string.required
-              = payment.text_field :amount, class: "form-control string required"
-              span.input-group-addon
-                .ensign.jpy
-            i.fa.fa-exchange.btn.btn-success
-            .input-group.form-group.string.required
-              = payment.text_field :amount, class: "form-control string required"
-              span.input-group-addon
-                .ensign.cny
+            = payment.input :amount, class: "form-control string required"
+            .row
+              .col-lg-6
+                .exchange
+                  | guaranteed_rate:
+                  span.guaranteed_rate.exchange_jpy
+                    = @exchange_jpy.guaranteed_rate
+                  span.guaranteed_rate.exchange_cny
+                    = @exchange_cny.guaranteed_rate
+              .col-lg-6
+                .exchange_currency
+                  span.currency_ensign
+                    .ensign.jpy
+                  i.fa.fa-exchange.btn.btn-success
+                  span.currency_ensign
+                    .ensign.cny
+            .form-group.string.required
+              input.form-control.string.transfer_amount
   .row
     .col-lg-6
       .panel.panel-default
@@ -26,11 +32,11 @@
           | Sender info
         .panel-body
           = f.fields_for :sender do |sender|
+            = sender.hidden_field :user_id, value: current_user.id
             = sender.input :first_name
             = sender.input :last_name
-            = sender.date_field :birthday, class: "form-control"
-            .form-group
-              = sender.country_select :country, class: "form-control"
+            = sender.input :birthday, as: :date, html5: true
+            = sender.input :country, as: :string
             = sender.input :city
             = sender.input :phone
             = sender.input :post_code
@@ -41,6 +47,7 @@
           | Recipient info
         .panel-body
           = f.fields_for :recipient do |recipient|
+            = recipient.hidden_field :user_id, value: current_user.id
             = recipient.input :full_name
             = recipient.input :email
             = recipient.input :account_number

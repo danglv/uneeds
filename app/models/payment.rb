@@ -16,9 +16,10 @@
 
 # Payment
 class Payment < ApplicationRecord
-  has_one :exchange, dependent: :destroy
+  belongs_to :exchange
   has_one :transfers, dependent: :nullify
 
+  validates :amount, presence: true
   before_create :set_guaranteed_rate
 
   private

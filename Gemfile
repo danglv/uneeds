@@ -88,4 +88,3 @@ end
 gem "active_hash", "~> 1.5", ">= 1.5.2"
 gem "slim-rails", "~> 3.1", ">= 3.1.3"
 gem "simple_form", "~> 3.5"
-gem 'country_select', '~> 3.1', '>= 3.1.1'

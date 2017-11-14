@@ -27,4 +27,23 @@ class Transfer < ApplicationRecord
   belongs_to :sender
   belongs_to :recipient
   belongs_to :payment
+
+  accepts_nested_attributes_for :sender, :recipient, :payment
+  ATTRIBUTES = [
+    payment_attributes: %i[exchange_id amount user_id],
+    sender_attributes: %i[first_name last_name birthday country city phone
+                          post_code occupation user_id],
+    recipient_attributes: %i[full_name email account_number account_type
+                             bank_name branch_name currency ibank user_id]
+  ].freeze
+
+  before_create :set_data
+
+  private
+
+  def set_data
+    self.sender_data = sender.as_json(except: %i[id created_at updated_at])
+    self.recipient_data = recipient.as_json(except: %i[id created_at
+                                                       updated_at])
+  end
 end
