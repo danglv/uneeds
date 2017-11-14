@@ -5,8 +5,8 @@
         .panel-heading
           | transfer info
         .panel-body
-          = f.fields_for :payment do |payment|
-            = payment.hidden_field :exchange_id, value: 1
+          = f.simple_fields_for :payment do |payment|
+            = payment.hidden_field :exchange_id, value: payment.object.exchange_id || 1
             = payment.input :amount, class: "form-control string required"
             .row
               .col-lg-6
@@ -31,7 +31,7 @@
         .panel-heading
           | Sender info
         .panel-body
-          = f.fields_for :sender do |sender|
+          = f.simple_fields_for :sender do |sender|
             = sender.hidden_field :user_id, value: current_user.id
             = sender.input :address
             .sender_info_name
@@ -52,7 +52,7 @@
         .panel-heading
           | Recipient info
         .panel-body
-          = f.fields_for :recipient do |recipient|
+          = f.simple_fields_for :recipient do |recipient|
             = recipient.hidden_field :user_id, value: current_user.id
             = recipient.input :full_name
             = recipient.input :email

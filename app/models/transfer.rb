@@ -32,8 +32,9 @@ class Transfer < ApplicationRecord
   ATTRIBUTES = [
     payment_attributes: %i[exchange_id amount user_id],
     sender_attributes: %i[first_name last_name birthday country city phone
-                          post_code occupation user_id],
-    recipient_attributes: %i[full_name email account_number account_type
+                          post_code occupation user_id first_name_katakana
+                          last_name_katakana address],
+    recipient_attributes: %i[full_name email account_number account_type type
                              bank_name branch_name currency ibank user_id]
   ].freeze
 
