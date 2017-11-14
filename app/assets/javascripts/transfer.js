@@ -20,4 +20,9 @@ $(function() {
     var transfer_amount = $(".guaranteed_rate:visible").text() * $("#transfer_payment_attributes_amount").val();
     $("input.transfer_amount").val(transfer_amount);
   });
+
+  $("#transfer_amount").on("change", function(){
+    var amount = $("#transfer_amount").val()/$(".guaranteed_rate:visible").text();
+    $("#transfer_payment_attributes_amount").val(amount);
+  });
 });
