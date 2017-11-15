@@ -94,3 +94,5 @@ Style/StringLiterals:
 
 Style/TrivialAccessors:
   AllowPredicates: true
+Rails/HasAndBelongsToMany:
+  Enabled: false
