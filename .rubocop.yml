@@ -13,9 +13,13 @@ AllCops:
     - Gemfile
     - Guardfile
     - Rakefile
+    - "config/*"
+    - "config/**/*"
 
 Layout/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
+Layout/AlignHash:
+  Enabled: false
 
 Metrics/AbcSize:
   Exclude:
@@ -90,3 +94,5 @@ Style/StringLiterals:
 
 Style/TrivialAccessors:
   AllowPredicates: true
+Rails/HasAndBelongsToMany:
+  Enabled: false

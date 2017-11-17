@@ -1,0 +1,63 @@
+= simple_form_for @transfer do |f|
+  .panel.panel-default
+    .panel-heading
+      | transfer info
+    .panel-body
+      = f.simple_fields_for :payment do |payment|
+        = payment.hidden_field :exchange_id, value: payment.object.exchange_id || 1
+        = payment.input :amount, class: "form-control string required"
+        .row
+          .col-lg-6
+            .exchange
+              | guaranteed_rate:
+              span.guaranteed_rate.exchange_jpy
+                = @exchange_jpy.guaranteed_rate
+              span.guaranteed_rate.exchange_cny
+                = @exchange_cny.guaranteed_rate
+          .col-lg-6
+            .exchange_currency
+              span.currency_ensign
+                .ensign.jpy
+              i.fa.fa-exchange.btn.btn-success
+              span.currency_ensign
+                .ensign.cny
+        .form-group.string.required
+          input.form-control.string.transfer_amount#transfer_amount
+  .panel.panel-default
+    .panel-heading
+      <a href="javascript:void()" class="toggle-arrow collapsed" data-toggle="collapse" data-target="#sender_info">Sender info <b class="caret"></b></a>
+    .panel-body#sender_info.collapse
+      = f.simple_fields_for :sender do |sender|
+        = sender.hidden_field :user_id, value: current_user.id
+        = sender.input :address
+        .sender_info_name
+          .sender_info_name_cny
+            = sender.input :first_name
+            = sender.input :last_name
+          .sender_info_name_jpy
+            = sender.input :first_name_katakana
+            = sender.input :last_name_katakana
+        = sender.input :birthday, as: :date, html5: true
+        = sender.input :country, as: :string
+        = sender.input :city
+        = sender.input :phone
+        = sender.input :post_code
+        = sender.input :occupation
+  .panel.panel-default
+    .panel-heading
+      <a href="javascript:void()" class="toggle-arrow collapsed" data-toggle="collapse" data-target="#recipient_info">Recipient info <b class="caret"></b></a>
+    .panel-body#recipient_info.collapse
+      = f.simple_fields_for :recipient do |recipient|
+        = recipient.hidden_field :user_id, value: current_user.id
+        = recipient.input :full_name
+        = recipient.input :email
+        = recipient.input :account_number
+        = recipient.input :account_type
+        = recipient.input :bank_name
+        = recipient.input :branch_name
+        = recipient.input :currency
+        = recipient.input :ibank
+        = recipient.input :kind
+  .col-lg-12.text-center
+    = f.submit  "Create", class: 'btn btn-primary'
+

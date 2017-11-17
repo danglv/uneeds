@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Uneeds <%= Rails.application.config.version %> (<%= l(Rails.application.config.version_time) %>) -->
-
     <%# CSS should go closest to the top of the document as possible. %>
     <%= stylesheet_link_tag("application",
                             :media => "all",
@@ -29,7 +27,7 @@
     </title>
   </head>
   <body>
-
+    <div id="page-loader" class="fade in hide"><span class="spinner"></span></div>
     <%= yield %>
 
   </body>

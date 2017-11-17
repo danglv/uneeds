@@ -1,0 +1,49 @@
+.jpy {
+  background: url(/assets/ensigns/jpy.png);
+  width: 20px;
+  height: 20px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+.cny {
+  background-image: url(/assets/ensigns/cny.png);
+  width: 20px;
+  height: 20px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+.exchange_currency {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.currency_ensign {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555555;
+  text-align: center;
+  background-color: #eeeeee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  vertical-align: middle;
+  border-left: 0px;
+}
+
+.transfer_form_info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+
+.transfer_form_col {
+  display: flex;
+  flex-direction: column;
+  border-right: solid 1px;
+}
