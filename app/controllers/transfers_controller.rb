@@ -15,7 +15,7 @@ class TransfersController < ApplicationController
 
   def create
     @transfer = Transfer.new(transfer_params)
-    @transfer.user = current_user
+    set_transfer_attributes
     if @transfer.save
       flash.now[:notice] = "success"
       redirect_to root_path
@@ -27,6 +27,11 @@ class TransfersController < ApplicationController
     end
   end
 
+  def fee
+    fee = TransferFeeService.new(params[:amount].to_f).fee
+    render json: { fee: fee }
+  end
+
   private
 
   def transfer_params
@@ -35,5 +40,12 @@ class TransfersController < ApplicationController
 
   def load_transfer
     @transfer = Transfer.find params[:id]
+  end
+
+  def set_transfer_attributes
+    fee = TransferFeeService.new(@transfer.payment.amount).fee
+    @transfer.payment.fee = fee
+    @transfer.payment.transfer_amount = @transfer.payment.amount - fee
+    @transfer.user = current_user
   end
 end

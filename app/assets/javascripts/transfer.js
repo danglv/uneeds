@@ -43,8 +43,35 @@ $(function() {
   });
 
   $("#transfer_payment_attributes_amount").on("change", function(){
-    var transfer_amount = $(".guaranteed_rate:visible").text() * $("#transfer_payment_attributes_amount").val();
-    $("input.transfer_amount").val(transfer_amount);
+    var amount = $("#transfer_payment_attributes_amount").val();
+
+
+    $.ajax({
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      url: "/transfers/fee",
+      data: JSON.stringify({amount: amount}),
+      dataType: "json",
+      success: function (result) {
+        $(".transfer_fee .fee").text(result["fee"]);
+        var real_amount = amount - result["fee"];
+        $(".real_amount .amount").text(real_amount);
+        if (amount - result["fee"] <= 0) {
+          var error_str = '<span class="help-block">amount must be greater than fee!</span>';
+          $(".transfer_payment_amount").addClass("has-error");
+          $(".transfer_payment_amount").find("span").remove();
+          $(".transfer_payment_amount").append(error_str);
+        } else {
+          $(".transfer_payment_amount").removeClass("has-error");
+          $(".transfer_payment_amount").find("span").remove();
+          var transfer_amount = $(".guaranteed_rate:visible").text() * real_amount;
+          $("input.transfer_amount").val(transfer_amount);
+        }
+      },
+      error: function (){
+        window.alert("get fee fail!");
+      }
+    });
   });
 
   $("#transfer_amount").on("change", function(){

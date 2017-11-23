@@ -1,0 +1,14 @@
+= simple_form_for :exchange, url:admin_exchange_path, method:"PUT" do |f|
+  .panel.panel-default
+    .panel-heading
+      | exchange info
+    .panel-body
+      .currency_from
+        | Currency from
+        div class="#{@exchange.currency_from.name.downcase}"
+      .currency_to
+        | Currency to
+        div class="#{@exchange.currency_to.name.downcase}"
+      = f.input :guaranteed_rate
+  .col-lg-12.text-center
+    = f.submit  "update", class: 'btn btn-primary'
