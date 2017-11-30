@@ -1,2 +1,57 @@
 - provide(:title, "Home")
 = link_to "Send Money", new_transfer_path, class: "btn btn-success"
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        h4 本日の為替
+      .panel-body
+        table.table.table-bordered.table-hover.table-index width="100%"
+          thead
+            tr
+              th 銀行名
+              th １円　　対　人民元
+              th 銀行名
+              th １人民元　　対　円
+          tbody
+            - @m_exchanges.each do |m_exchange|
+              tr
+                td.col-xs-3
+                  = m_exchange[:name]
+                td.col-xs-3
+                  = m_exchange[:guaranteed_rate_from_jpy]
+                td.col-xs-3
+                  = m_exchange[:name]
+                td.col-xs-3
+                  = m_exchange[:guaranteed_rate_from_cny]
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        h4 買取為替（１万ドル以内）
+      .panel-body
+        table.table.table-bordered.table-hover.table-index width="100%"
+          thead
+            tr
+              th
+              th １円　　対　人民元
+              th
+              th １人民元　　対　円
+          tbody
+              tr
+                td.col-xs-3
+                  | 円買取
+                td.col-xs-3
+                  = @exchange_jpy.guaranteed_rate
+                td.col-xs-3
+                  | 人民元　買取
+                td.col-xs-3
+                  = @exchange_cny.guaranteed_rate
+              tr
+                td.text-center colspan="2"
+                  | 10万円　受取
+                  = @exchange_jpy.guaranteed_rate * 100_000
+                  | 元
+                td.text-center colspan="2"
+                  = "1万元　受取#{@exchange_cny.guaranteed_rate.to_i}万  "
+                  = "#{@exchange_cny.guaranteed_rate.to_i}万#{@exchange_cny.guaranteed_rate.to_s.split('.').last.first}千#{@exchange_cny.guaranteed_rate.to_s.split('.').last[1]}円"

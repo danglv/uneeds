@@ -5,8 +5,10 @@
 #  amount          :float
 #  created_at      :datetime         not null
 #  exchange_id     :integer
+#  fee             :float
 #  guaranteed_rate :float
 #  id              :integer          not null, primary key
+#  transfer_amount :float
 #  updated_at      :datetime         not null
 #
 # Indexes

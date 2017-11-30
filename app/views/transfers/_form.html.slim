@@ -9,11 +9,18 @@
         .row
           .col-lg-6
             .exchange
-              | guaranteed_rate:
+              | Guaranteed_rate:
               span.guaranteed_rate.exchange_jpy
                 = @exchange_jpy.guaranteed_rate
               span.guaranteed_rate.exchange_cny
                 = @exchange_cny.guaranteed_rate
+            .transfer_fee
+              | Fee:
+              span.fee
+                | 0
+            .real_amount
+              | Amount will transfer:
+              span.amount
           .col-lg-6
             .exchange_currency
               span.currency_ensign
