@@ -18,6 +18,7 @@ gem "devise-i18n"
 gem "devise-i18n-views"
 gem "dotenv-rails", ">= 2.0.0"
 gem "font-awesome-rails"
+gem 'therubyracer', platforms: :ruby
 gem "jquery-rails"
 gem "mail", ">= 2.6.3"
 gem "marco-polo"
