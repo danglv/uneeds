@@ -20,5 +20,8 @@ module Uneeds
     # Ensure non-standard paths are eager-loaded in production
     # (these paths are also autoloaded in development mode)
     # config.eager_load_paths += %W(#{config.root}/lib)
+    config.time_zone = "Tokyo"
+    config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
+    config.i18n.default_locale = :ja
   end
 end

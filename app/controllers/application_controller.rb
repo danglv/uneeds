@@ -5,9 +5,18 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
   end
 
-  before_action :authenticate_user!
+  before_action :set_locale, :authenticate_user!
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
   protected
+
+  def set_locale
+    I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
+  end
 
   def authenticate_user!(options={})
     if user_signed_in?

@@ -1,18 +1,18 @@
-- provide(:title, "Home")
-= link_to "Send Money", new_transfer_path, class: "btn btn-success"
+- provide :title, t(".home")
+= link_to t(".send_money"), new_transfer_path, class: "btn btn-success"
 .row
   .col-lg-12
     .panel.panel-default
       .panel-heading
-        h4 本日の為替
+        h4 = t(".today_exchange")
       .panel-body
         table.table.table-bordered.table-hover.table-index width="100%"
           thead
             tr
-              th 銀行名
-              th １円　　対　人民元
-              th 銀行名
-              th １人民元　　対　円
+              th = t(".bank_name")
+              th = t(".one_yen_to_rmb")
+              th = t(".bank_name")
+              th = t(".one_rmb_to_yen")
           tbody
             - @m_exchanges.each do |m_exchange|
               tr
@@ -28,30 +28,27 @@
   .col-lg-12
     .panel.panel-default
       .panel-heading
-        h4 買取為替（１万ドル以内）
+        h4 = t(".less_than_one_man_purchase_exchange")
       .panel-body
         table.table.table-bordered.table-hover.table-index width="100%"
           thead
             tr
               th
-              th １円　　対　人民元
+              th = t(".one_yen_to_rmb")
               th
-              th １人民元　　対　円
+              th = t(".one_rmb_to_yen")
           tbody
               tr
                 td.col-xs-3
-                  | 円買取
+                  = t(".yen_purchase")
                 td.col-xs-3
                   = @exchange_jpy.guaranteed_rate
                 td.col-xs-3
-                  | 人民元　買取
+                  = t(".rmb_purchase")
                 td.col-xs-3
                   = @exchange_cny.guaranteed_rate
               tr
                 td.text-center colspan="2"
-                  | 10万円　受取
-                  = @exchange_jpy.guaranteed_rate * 100_000
-                  | 元
+                  = t(".10_man_yen_receipt", amount: @exchange_jpy.guaranteed_rate * 100_000)
                 td.text-center colspan="2"
-                  = "1万元　受取#{@exchange_cny.guaranteed_rate.to_i}万  "
-                  = "#{@exchange_cny.guaranteed_rate.to_i}万#{@exchange_cny.guaranteed_rate.to_s.split('.').last.first}千#{@exchange_cny.guaranteed_rate.to_s.split('.').last[1]}円"
+                  = t(".1_man_rmb_receipt", amount: "#{@exchange_cny.guaranteed_rate.to_i}万#{@exchange_cny.guaranteed_rate.to_s.split('.').last.first}千#{@exchange_cny.guaranteed_rate.to_s.split('.').last[1]}")
