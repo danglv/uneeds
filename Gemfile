@@ -21,7 +21,7 @@ gem "font-awesome-rails"
 gem "jquery-rails"
 gem "mail", ">= 2.6.3"
 gem "marco-polo"
-gem "pg", "~> 0.18"
+gem 'pg', '~> 0.21.0'
 gem "pgcli-rails"
 gem "rails", "5.1.4"
 gem "sass-rails", "~> 5.0"
