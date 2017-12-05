@@ -6,9 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Exchange.create(
-  [
-    { currency_from_id: 1, currency_to_id: 2, guaranteed_rate: 0.05831 },
-    { currency_from_id: 2, currency_to_id: 1, guaranteed_rate: 17.14972 }
-  ]
-)
+require "csv"
+
+logger = Logger.new(STDOUT)
+logger.info "Creating seeds data..."
+[:exchange].each do |klass_name|
+  klass = klass_name.to_s.classify.safe_constantize
+  logger.info "-- Clear data for #{klass.name}"
+  klass.delete_all
+  logger.info "-- Creating seeds data for #{klass.name}"
+  ActiveRecord::Base.transaction do
+    CSV.open(
+      Rails.root.join("db", "csv", "#{klass_name.to_s.pluralize}.csv"),
+      headers: true, header_converters: :downcase
+    ).each do |row|
+      attrs = row.to_hash
+      klass.create! attrs
+    end
+  end
+end
+
+logger.info "-- Creating 10 admins..."
+10.times do |i|
+  u = User.create email: "admin#{i + 1}@uneeds.tomosia.com",
+    password: "Aa@123456"
+  u.add_role :admin
+end

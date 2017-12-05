@@ -5,6 +5,8 @@ zh-CN:
     log_out: &log_out 注销
     register: &register 登録
     bank_name: &bank_name 銀行名
+    one_yen_to_rmb: &one_yen_to_rmb １円　　対　人民元
+    one_rmb_to_yen: &one_rmb_to_yen １人民元　　対　円
   shared:
     navbar:
       home: *home
@@ -16,15 +18,19 @@ zh-CN:
     index:
       home: *home
       send_money: 送金する
+    bank_exchanges:
       today_exchange: 本日の為替
       bank_name: *bank_name
-      one_yen_to_rmb: １円　　対　人民元
-      one_rmb_to_yen: １人民元　　対　円
+      one_yen_to_rmb: *one_yen_to_rmb
+      one_rmb_to_yen: *one_rmb_to_yen
+    uneeds_exchanges:
       less_than_one_man_purchase_exchange: 買取為替（１万ドル以内）
+      one_yen_to_rmb: *one_yen_to_rmb
+      one_rmb_to_yen: *one_rmb_to_yen
       yen_purchase: 円買取
       rmb_purchase: 人民元　買取
       10_man_yen_receipt: 10万円　受取%{amount}元
-      1_man_rmb_receipt: 1万元　受取%{amount}円
+      1_man_rmb_receipt: 1万元　受取%{amount}万円
   transfers:
     new:
       title: 送金

@@ -2,53 +2,7 @@
 = link_to t(".send_money"), new_transfer_path, class: "btn btn-success"
 .row
   .col-lg-12
-    .panel.panel-default
-      .panel-heading
-        h4 = t(".today_exchange")
-      .panel-body
-        table.table.table-bordered.table-hover.table-index width="100%"
-          thead
-            tr
-              th = t(".bank_name")
-              th = t(".one_yen_to_rmb")
-              th = t(".bank_name")
-              th = t(".one_rmb_to_yen")
-          tbody
-            - @m_exchanges.each do |m_exchange|
-              tr
-                td.col-xs-3
-                  = m_exchange[:name]
-                td.col-xs-3
-                  = m_exchange[:guaranteed_rate_from_jpy]
-                td.col-xs-3
-                  = m_exchange[:name]
-                td.col-xs-3
-                  = m_exchange[:guaranteed_rate_from_cny]
+    = render "bank_exchanges", exchanges: @bank_exchanges
 .row
   .col-lg-12
-    .panel.panel-default
-      .panel-heading
-        h4 = t(".less_than_one_man_purchase_exchange")
-      .panel-body
-        table.table.table-bordered.table-hover.table-index width="100%"
-          thead
-            tr
-              th
-              th = t(".one_yen_to_rmb")
-              th
-              th = t(".one_rmb_to_yen")
-          tbody
-              tr
-                td.col-xs-3
-                  = t(".yen_purchase")
-                td.col-xs-3
-                  = @exchange_jpy.guaranteed_rate
-                td.col-xs-3
-                  = t(".rmb_purchase")
-                td.col-xs-3
-                  = @exchange_cny.guaranteed_rate
-              tr
-                td.text-center colspan="2"
-                  = t(".10_man_yen_receipt", amount: @exchange_jpy.guaranteed_rate * 100_000)
-                td.text-center colspan="2"
-                  = t(".1_man_rmb_receipt", amount: "#{@exchange_cny.guaranteed_rate.to_i}万#{@exchange_cny.guaranteed_rate.to_s.split('.').last.first}千#{@exchange_cny.guaranteed_rate.to_s.split('.').last[1]}")
+    = render "uneeds_exchanges", exchanges: @uneeds_exchanges

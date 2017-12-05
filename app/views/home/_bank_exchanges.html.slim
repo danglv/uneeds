@@ -1,0 +1,15 @@
+.panel.panel-default
+  .panel-heading
+    h4 = t(".today_exchange")
+  .panel-body
+    table.table.table-bordered.table-hover.table-index width="100%"
+      thead
+        tr
+          th = t(".bank_name")
+          th = t(".one_yen_to_rmb")
+          th = t(".bank_name")
+          th = t(".one_rmb_to_yen")
+      tbody
+        - exchanges.each_slice(2) do |two_exchanges|
+          tr
+            = render partial: "#{I18n.locale}_exchange", collection: two_exchanges, as: :exchange

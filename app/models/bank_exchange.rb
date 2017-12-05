@@ -14,19 +14,5 @@
 #  updated_at       :datetime         not null
 #
 
-# Exchange
-class Exchange < ApplicationRecord
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :currency_from, class_name: "M::Currency",
-    foreign_key: "currency_from_id"
-  belongs_to_active_hash :currency_to, class_name: "M::Currency",
-    foreign_key: "currency_to_id"
-
-  def from_jpy?
-    currency_from_id == 1
-  end
-
-  def from_cny?
-    currency_from_id == 2
-  end
+class BankExchange < Exchange
 end
