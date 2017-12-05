@@ -1,0 +1,59 @@
+ja:
+  dictionary:
+    home: &home ホーム
+    log_in: &log_in ログイン
+    log_out: &log_out ログアウト
+    register: &register 登録
+    bank_name: &bank_name 銀行名
+  shared:
+    navbar:
+      home: *home
+      log_in: *log_in
+      log_out: *log_out
+      register: *register
+      settings: 設定
+  home:
+    index:
+      home: *home
+      send_money: 送金する
+      today_exchange: 本日の為替
+      bank_name: *bank_name
+      one_yen_to_rmb: １円　　対　人民元
+      one_rmb_to_yen: １人民元　　対　円
+      less_than_one_man_purchase_exchange: 買取為替（１万ドル以内）
+      yen_purchase: 円買取
+      rmb_purchase: 人民元　買取
+      10_man_yen_receipt: 10万円　受取%{amount}元
+      1_man_rmb_receipt: 1万元　受取%{amount}円
+  transfers:
+    new:
+      title: 送金
+    form:
+      transfer_info: 送金情報
+      amount: 送金する金額
+      guaranteed_rate: "レート保証: "
+      fee: "手数料: "
+      amount_will_transfer: 両替額
+      sender_info: 送金人情報
+      address: 住所(ローマ字)
+      first_name: メイ(半角ローマ字)
+      last_name: セイ(半角ローマ字)
+      first_name_katakana: 名前(カナ)
+      last_name_katakana: 苗字(カナ)
+      birthday: 生年月日(西暦)
+      country: 国
+      city: 都道府県
+      phone: 電話番号
+      post_code: 郵便番号
+      occupation: 職業
+      recipient_info: 受取人情報
+      full_name: 口座名義人のフルネーム
+      email: メールアドレス
+      account_number: 口座番号
+      account_type: 口座種別
+      bank_name: *bank_name
+      branch_name: 支店名
+      currency: カレンシー
+      ibank: IBANK
+      kind: kind
+      create: 作成する

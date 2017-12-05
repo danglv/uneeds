@@ -1,4 +1,4 @@
-ja:
+zh-CN:
   activerecord:
     attributes:
       user:
@@ -36,6 +36,7 @@ ja:
         confirm_new_password: "確認用新しいパスワード"
         new_password: "新しいパスワード"
       new:
+        title: パスワードをお忘れですか？
         forgot_your_password: "パスワードを忘れましたか?"
         send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
     registrations:
@@ -49,9 +50,12 @@ ja:
         update: "更新"
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
+        title: 口座を開設する
         sign_up: "アカウント登録"
     sessions:
       new:
+        title: ログイン
+        remember_me: ログイン情報を記憶
         sign_in: "ログイン"
     shared:
       links:

@@ -1,25 +1,25 @@
 = simple_form_for @transfer do |f|
   .panel.panel-default
     .panel-heading
-      | transfer info
+      = t(".transfer_info")
     .panel-body
       = f.simple_fields_for :payment do |payment|
         = payment.hidden_field :exchange_id, value: payment.object.exchange_id || 1
-        = payment.input :amount, class: "form-control string required"
+        = payment.input :amount, class: "form-control string required", label: t(".amount")
         .row
           .col-lg-6
             .exchange
-              | Guaranteed_rate:
+              = t ".guaranteed_rate"
               span.guaranteed_rate.exchange_jpy
                 = @exchange_jpy.guaranteed_rate
               span.guaranteed_rate.exchange_cny
                 = @exchange_cny.guaranteed_rate
             .transfer_fee
-              | Fee:
+              = t ".fee"
               span.fee
                 | 0
             .real_amount
-              | Amount will transfer:
+              = t ".amount_will_transfer"
               span.amount
           .col-lg-6
             .exchange_currency
@@ -32,39 +32,45 @@
           input.form-control.string.transfer_amount#transfer_amount
   .panel.panel-default
     .panel-heading
-      <a href="javascript:void()" class="toggle-arrow collapsed" data-toggle="collapse" data-target="#sender_info">Sender info <b class="caret"></b></a>
+      <a href="javascript:void()" class="toggle-arrow collapsed" data-toggle="collapse" data-target="#sender_info">
+        = t ".sender_info"
+        <b class="caret"></b>
+      </a>
     .panel-body#sender_info.collapse
       = f.simple_fields_for :sender do |sender|
         = sender.hidden_field :user_id, value: current_user.id
-        = sender.input :address
+        = sender.input :address, label: t(".address")
         .sender_info_name
           .sender_info_name_cny
-            = sender.input :first_name
-            = sender.input :last_name
+            = sender.input :first_name, label: t(".first_name")
+            = sender.input :last_name, label: t(".last_name")
           .sender_info_name_jpy
-            = sender.input :first_name_katakana
-            = sender.input :last_name_katakana
-        = sender.input :birthday, as: :date, html5: true
-        = sender.input :country, as: :string
-        = sender.input :city
-        = sender.input :phone
-        = sender.input :post_code
-        = sender.input :occupation
+            = sender.input :first_name_katakana, label: t(".first_name_katakana")
+            = sender.input :last_name_katakana, label: t(".last_name_katakana")
+        = sender.input :birthday, as: :date, html5: true, label: t(".birthday")
+        = sender.input :country, as: :string, label: t(".country")
+        = sender.input :city, label: t(".city")
+        = sender.input :phone, label: t(".phone")
+        = sender.input :post_code, label: t(".post_code")
+        = sender.input :occupation, label: t(".occupation")
   .panel.panel-default
     .panel-heading
-      <a href="javascript:void()" class="toggle-arrow collapsed" data-toggle="collapse" data-target="#recipient_info">Recipient info <b class="caret"></b></a>
+      <a href="javascript:void()" class="toggle-arrow collapsed" data-toggle="collapse" data-target="#recipient_info">
+        = t(".recipient_info")
+        <b class="caret"></b>
+      </a>
     .panel-body#recipient_info.collapse
       = f.simple_fields_for :recipient do |recipient|
         = recipient.hidden_field :user_id, value: current_user.id
-        = recipient.input :full_name
-        = recipient.input :email
-        = recipient.input :account_number
-        = recipient.input :account_type
-        = recipient.input :bank_name
-        = recipient.input :branch_name
-        = recipient.input :currency
-        = recipient.input :ibank
-        = recipient.input :kind
+        = recipient.input :full_name, label: t(".full_name")
+        = recipient.input :email, label: t(".email")
+        = recipient.input :account_number, label: t(".account_number")
+        = recipient.input :account_type, label: t(".account_type")
+        = recipient.input :bank_name, label: t(".bank_name")
+        = recipient.input :branch_name, label: t(".branch_name")
+        = recipient.input :currency, label: t(".currency")
+        = recipient.input :ibank, label: t(".ibank")
+        = recipient.input :kind, label: t(".kind")
   .col-lg-12.text-center
-    = f.submit  "Create", class: 'btn btn-primary'
+    = f.submit  t(".create"), class: 'btn btn-primary'
 
