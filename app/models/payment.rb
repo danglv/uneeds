@@ -18,7 +18,7 @@
 
 # Payment
 class Payment < ApplicationRecord
-  belongs_to :exchange
+  belongs_to :uneeds_exchange, foreign_key: "exchange_id"
   has_one :transfers, dependent: :nullify
 
   validates :amount, presence: true

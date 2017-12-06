@@ -28,18 +28,19 @@ class Sender < ApplicationRecord
   belongs_to :user
   has_one :transfer, dependent: :nullify
   validates :address, :birthday, :city, :country, :occupation, :phone,
-            :post_code, presence: true
-  validates :first_name, :last_name, presence: true, if: :from_china?
+            :post_code, :first_name, :last_name, presence: true
   validates :first_name_katakana, :last_name_katakana,
             presence: true, if: :from_japan?
 
+  enum countries: %i[china japan]
+
   private
 
-  def from_china?
-    transfer.payment.exchange_id == 2
+  def from_japan?
+    transfer.payment.uneeds_exchange.currency_from_id == 1
   end
 
-  def from_japan?
-    transfer.payment.exchange_id == 1
+  def from_china?
+    transfer.payment.uneeds_exchange.currency_from_id == 2
   end
 end
