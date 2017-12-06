@@ -10,6 +10,8 @@ Rails.application.routes.draw do
         post :fee
       end
     end
+    resources :senders
+    resources :recipients
     namespace :admin do
       resources :exchanges
       resources :transfers

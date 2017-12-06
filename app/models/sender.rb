@@ -5,7 +5,7 @@
 #  address             :string
 #  birthday            :datetime
 #  city                :string
-#  country             :string
+#  country             :integer
 #  created_at          :datetime         not null
 #  first_name          :string
 #  first_name_katakana :string
@@ -32,7 +32,12 @@ class Sender < ApplicationRecord
   validates :first_name_katakana, :last_name_katakana,
             presence: true, if: :from_japan?
 
-  enum countries: %i[china japan]
+  enum country: %i[china japan]
+
+  PERMITTED_ATTRIBUTES = %i[
+    first_name last_name first_name_katakana last_name_katakana country city
+    address phone post_code birthday occupation
+  ].freeze
 
   private
 
