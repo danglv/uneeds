@@ -1,0 +1,21 @@
+.panel.panel-default
+  .panel-heading
+    h4 = t(".less_than_one_man_purchase_exchange")
+  .panel-body
+    table.table.table-bordered.table-hover.table-index width="100%"
+      thead
+        tr
+          th
+          th = t(".one_yen_to_rmb")
+          th
+          th = t(".one_rmb_to_yen")
+      tbody
+          tr
+            = render partial: "#{I18n.locale}_exchange", collection: exchanges, as: :exchange
+          - exchange_jpy = exchanges.detect{|exchange| exchange.from_jpy?}
+          - exchange_cny = exchanges.detect{|exchange| exchange.from_cny?}
+          tr
+            td.text-center colspan="2"
+              = t(".10_man_yen_receipt", amount: exchange_jpy.guaranteed_rate * 100_000)
+            td.text-center colspan="2"
+              = t(".1_man_rmb_receipt", amount: exchange_cny.guaranteed_rate)

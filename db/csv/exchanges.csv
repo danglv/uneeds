@@ -1,0 +1,11 @@
+id,type,jp_name,cn_name,currency_from_id,currency_to_id,guaranteed_rate,code
+1,BankExchange,中国銀行為替,中国銀行為替,1,2,0.05953,JPYCNY
+2,BankExchange,中国銀行為替,中国銀行為替,2,1,16.85,CNYJPY
+3,BankExchange,銀聯為替,銀聯為替,1,2,0.05952,JPYCNY
+4,BankExchange,銀聯為替,銀聯為替,2,1,16.83,CNYJPY
+5,BankExchange,アリペイ,アリペイ,1,2,0.0595,JPYCNY
+6,BankExchange,アリペイ,アリペイ,2,1,16.84,CNYJPY
+7,BankExchange,Yahoo Japan,Yahoo Japan,1,2,0.0591,JPYCNY
+8,BankExchange,Yahoo Japan,Yahoo Japan,2,1,16.93,CNYJPY
+9,UneedsExchange,円買取,円買取,1,2,0.0598,JPYCNY
+10,UneedsExchange,人民元買取,人民元買取,2,1,16.66,CNYJPY

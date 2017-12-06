@@ -10,13 +10,9 @@ Rails.application.routes.draw do
         post :fee
       end
     end
-  end
-  post "locales/change", to: "locales#change"
-  # scope module: :admin, as: :admin do
-  #   resources :exchanges
-  # end
-  namespace :admin do
-    resources :exchanges
-    resources :transfers
+    namespace :admin do
+      resources :exchanges
+      resources :transfers
+    end
   end
 end
