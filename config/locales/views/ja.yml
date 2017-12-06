@@ -7,6 +7,11 @@ ja:
     bank_name: &bank_name 銀行名
     one_yen_to_rmb: &one_yen_to_rmb １円　　対　人民元
     one_rmb_to_yen: &one_rmb_to_yen １人民元　　対　円
+    exchange: &exchange 為替
+    guaranteed_rate: &guaranteed_rate レート保証
+    currency_from: &currency_from 通貨 から
+    currency_to: &currency_to 通貨 へ
+    update: &update 更新
   shared:
     navbar:
       home: *home
@@ -14,6 +19,8 @@ ja:
       log_out: *log_out
       register: *register
       settings: 設定
+      exchanges: 為替管理
+      transfers: 送金管理
   home:
     index:
       home: *home
@@ -63,3 +70,37 @@ ja:
       ibank: IBANK
       kind: kind
       create: 作成する
+  admin:
+    exchanges:
+      index:
+        title: 為替管理
+      uneeds_exchanges:
+        uneeds_exchange: 買取為替
+        num_order: 順
+        jp_name: 名(JP)
+        cn_name: 名(CN)
+        currency_from: *currency_from
+        currency_to: *currency_to
+        guaranteed_rate: *guaranteed_rate
+        action: 行動
+      bank_exchanges:
+        bank_exchange: 銀行為替
+        num_order: 順
+        bank_jp_name: 銀行名(JP)
+        bank_cn_name: 銀行名(CN)
+        currency_from: *currency_from
+        currency_to: *currency_to
+        guaranteed_rate: *guaranteed_rate
+        action: 行動
+      exchange:
+        edit: 編集
+      edit:
+        title: 為替編集
+      form:
+        exchange_info: 為替情報
+        currency_from: *currency_from
+        currency_to: *currency_to
+        jp_name: 名(JP)
+        cn_name: 名(CN)
+        guaranteed_rate: *guaranteed_rate
+        update: *update

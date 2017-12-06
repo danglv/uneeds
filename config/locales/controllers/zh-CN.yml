@@ -1,0 +1,5 @@
+zh-CN:
+  admin:
+    exchanges:
+      update:
+        success: 更新成功

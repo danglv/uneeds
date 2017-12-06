@@ -1,0 +1,16 @@
+tr
+  td.text-center
+    = exchange_counter + 1
+  td
+    = exchange.jp_name
+  td
+    = exchange.cn_name
+  td
+    div class="#{exchange.currency_from.name.downcase}"
+  td
+    div class="#{exchange.currency_to.name.downcase}"
+  td
+    = exchange.guaranteed_rate
+  td.text-center
+    .btn-group.navbar-btn
+      = link_to t(".edit"), edit_admin_exchange_path(exchange), class: "btn btn-info"
