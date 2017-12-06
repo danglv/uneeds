@@ -1,0 +1,18 @@
+.panel.panel-default
+  .panel-heading
+    h4 = t ".uneeds_exchange"
+  .panel-body
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th.text-center = t ".num_order"
+            th = t ".jp_name"
+            th = t ".cn_name"
+            th = t ".currency_from"
+            th = t ".currency_to"
+            th = t ".guaranteed_rate"
+            th.text-center = t ".action"
+
+        tbody
+          = render partial: "exchange", collection: uneeds_exchanges

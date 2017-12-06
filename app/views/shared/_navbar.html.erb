@@ -28,14 +28,14 @@
         </li> -->
         <% if current_user && current_user.has_role?(:admin) %>
           <li>
-            <%= navbar_link_to("Exchanges",
+            <%= navbar_link_to t(".exchanges"),
                                 admin_exchanges_path,
-                                :active_when => { :controller => "admin/exchanges" }) %>
+                                :active_when => { :controller => "admin/exchanges" } %>
           </li>
           <li>
-            <%= navbar_link_to("Transfers",
+            <%= navbar_link_to t(".transfers"),
                                 admin_transfers_path,
-                                :active_when => { :controller => "admin/transfers" })%>
+                                :active_when => { :controller => "admin/transfers" }%>
           </li>
 
         <% end %>

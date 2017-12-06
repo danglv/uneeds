@@ -1,33 +1,9 @@
-- provide(:title, "Exchange")
+- provide :title, t(".title")
 .content
   .block
     .block-content
       .row
         .col-xs-9
         .col-xs-3
-      .table-responsive
-        table.table.table-striped
-          thead
-            tr
-              th.text-center STT
-              th currency from
-              th currency to
-              th guaranteed rate
-              th.text-left style=("width: 15%")
-
-          tbody
-            tbody
-              - if @exchanges
-                - @exchanges.each_with_index do |ex, index|
-                  tr
-                    td.text-center
-                      = index + 1
-                    td
-                      div class="#{ex.currency_from.name.downcase}"
-                    td
-                      div class="#{ex.currency_to.name.downcase}"
-                    td
-                      = ex.guaranteed_rate
-                    td.text-center
-                      .btn-group.navbar-btn
-                        = link_to "edit", edit_admin_exchange_path(ex), class: "btn btn-info"
+      = render "uneeds_exchanges", uneeds_exchanges: @uneeds_exchanges
+      = render "bank_exchanges", bank_exchanges: @bank_exchanges
