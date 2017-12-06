@@ -45,7 +45,7 @@ class TransfersController < ApplicationController
   def set_transfer_attributes
     fee = TransferFeeService.new(@transfer.payment.amount).fee
     @transfer.payment.fee = fee
-    @transfer.payment.transfer_amount = @transfer.payment.amount - fee
+    @transfer.payment.transfer_amount = @transfer.payment.amount.to_f - fee
     @transfer.user = current_user
   end
 end
