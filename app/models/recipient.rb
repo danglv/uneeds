@@ -26,6 +26,20 @@ class Recipient < ApplicationRecord
   belongs_to :user
   has_many :transfers, dependent: :nullify
 
-  validates :account_number, :account_type, :bank_name, :branch_name, :currency,
-            :email, :full_name, :ibank, :kind, presence: true
+  validates :account_number, :account_type, :bank_name, :branch_name,
+            :email, :full_name, :ibank, presence: true
+
+  validates :account_type, presence: true, if: :from_china?
+
+  enum account_types: %i[futsuu chochiku touza]
+
+  private
+
+  def from_japan?
+    transfer.payment.uneeds_exchange.currency_from_id == 1
+  end
+
+  def from_china?
+    transfer.payment.uneeds_exchange.currency_from_id == 2
+  end
 end

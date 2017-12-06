@@ -5,7 +5,7 @@ class TransferFeeService
   end
 
   def fee
-    return 1000 if @amount > 10_000
+    return 1000 if @amount.to_f > 10_000
     500
   end
 end

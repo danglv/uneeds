@@ -11,7 +11,9 @@ $(function() {
     var ensign = exchange_id == "1" ? "cny" : "jpy";
     if (exchange_id == "2") {change_ensign()};
     $(".exchange_" + ensign).toggle();
-    $(".sender_info_name_" + ensign).toggle();
+    if (ensign == "jpy") {
+      $(".sender_info_name_jpy").toggle();
+    }
   }
 
   function change_exchange() {
@@ -34,9 +36,7 @@ $(function() {
     $(".exchange").children().each(function(){
       $(this).toggle();
     });
-    $(".sender_info_name").children().each(function(){
-      $(this).toggle();
-    });
+    $(".sender_info_name_jpy").toggle();
 
     var transfer_amount = $(".guaranteed_rate:visible").text() * $("#transfer_payment_attributes_amount").val();
     $("input.transfer_amount").val(transfer_amount);
