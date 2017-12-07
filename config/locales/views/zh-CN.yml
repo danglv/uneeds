@@ -12,6 +12,28 @@ zh-CN:
     currency_from: &currency_from 通貨 から
     currency_to: &currency_to 通貨 へ
     update: &update 更新
+    japan: &japan 日本
+    china: &china 中国
+    edit: &edit 編集
+    action: &action 行動
+    back: &back 戻る
+    full_name: &full_name フルネーム
+    full_name_katakana: &full_name_katakana フルネーム(カナ)
+    first_name: &first_name メイ
+    last_name: &last_name セイ
+    first_name_katakana: &first_name_katakana 名前(カナ)
+    last_name_katakana: &last_name_katakana 苗字(カナ)
+    country: &country 国
+    city: &city 都道府県
+    address: &address 住所
+    birthday: &birthday 誕生日
+    phone: &phone 電話番号
+    post_code: &post_code 郵便番号
+    occupation: &occupation 職業
+    sender_list: &sender_list 送金人一覧
+  time:
+    formats:
+      date_format: "%Y年%-m月%-d日"
   shared:
     navbar:
       home: *home
@@ -21,6 +43,7 @@ zh-CN:
       settings: 設定
       exchanges: 為替管理
       transfers: 送金管理
+      sender_list: *sender_list
   home:
     index:
       home: *home
@@ -70,6 +93,39 @@ zh-CN:
       ibank: IBANK
       kind: kind
       create: 作成する
+  senders:
+    index:
+      title: 送金人一覧
+      full_name: *full_name
+      full_name_katakana: *full_name_katakana
+      country: *country
+      city: *city
+      address: *address
+      post_code: *post_code
+      birthday: *birthday
+      phone: *phone
+      occupation: *occupation
+      action: *action
+    sender:
+      edit: *edit
+    edit:
+      title: 送金人情報編集
+      back: *back
+    form:
+      sender_info: 送金人情報
+      first_name: *first_name
+      first_name_katakana: *first_name_katakana
+      last_name: *last_name
+      last_name_katakana: *last_name_katakana
+      country: *country
+      choose_country: 国を選択してください
+      city: *city
+      address: *address
+      post_code: *post_code
+      birthday: *birthday
+      phone: *phone
+      occupation: *occupation
+      update: *update
   admin:
     exchanges:
       index:
@@ -82,7 +138,7 @@ zh-CN:
         currency_from: *currency_from
         currency_to: *currency_to
         guaranteed_rate: *guaranteed_rate
-        action: 行動
+        action: *action
       bank_exchanges:
         bank_exchange: 銀行為替
         num_order: 順
@@ -91,9 +147,9 @@ zh-CN:
         currency_from: *currency_from
         currency_to: *currency_to
         guaranteed_rate: *guaranteed_rate
-        action: 行動
+        action: *action
       exchange:
-        edit: 編集
+        edit: *edit
       edit:
         title: 為替編集
       form:

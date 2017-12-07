@@ -3,3 +3,6 @@ ja:
     exchanges:
       update:
         success: 更新成功した
+  senders:
+    update:
+      success: 送金人情報の更新が成功した

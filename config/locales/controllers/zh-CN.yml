@@ -3,3 +3,6 @@ zh-CN:
     exchanges:
       update:
         success: 更新成功
+  senders:
+    update:
+      success: 送金人情報の更新が成功した

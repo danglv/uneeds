@@ -1,0 +1,18 @@
+= simple_form_for sender do |f|
+  .panel.panel-default
+    .panel-heading
+      = t ".sender_info"
+    .panel-body
+      = f.input :first_name, label: t(".first_name")
+      = f.input :last_name, label: t(".last_name")
+      = f.input :first_name_katakana, label: t(".first_name_katakana")
+      = f.input :last_name_katakana, label: t(".last_name_katakana")
+      = f.input :country, collection: support.country_options, prompt: t(".choose_country"), label: t(".country")
+      = f.input :city, label: t(".city")
+      = f.input :address, label: t(".address")
+      = f.input :post_code, label: t(".post_code")
+      = f.input :birthday, as: :date, label: t(".birthday")
+      = f.input :phone, label: t(".phone")
+      = f.input :occupation, label: t(".occupation")
+  .col-lg-12.text-center
+    = f.submit  t(".#{sender.new_record? ? :create : :update}"), class: "btn btn-primary"
