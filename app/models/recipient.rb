@@ -3,11 +3,11 @@
 # Table name: recipients
 #
 #  account_number :string
-#  account_type   :string
+#  account_type   :integer
 #  bank_name      :string
 #  branch_name    :string
 #  created_at     :datetime         not null
-#  currency       :string
+#  currency       :integer
 #  email          :string
 #  full_name      :string
 #  ibank          :string
@@ -26,12 +26,18 @@ class Recipient < ApplicationRecord
   belongs_to :user
   has_many :transfers, dependent: :nullify
 
-  validates :account_number, :account_type, :bank_name, :branch_name,
-            :email, :full_name, :ibank, presence: true
+  validates :account_number, :bank_name, :branch_name,
+            :email, :full_name, :ibank, :currency, presence: true
 
-  validates :account_type, presence: true, if: :from_china?
+  validates :account_type, presence: true, if: :cny_to_jpy?
 
-  enum account_types: %i[futsuu chochiku touza]
+  enum account_type: %i[futsuu chochiku touza]
+  enum currency: %i[jpy cny]
+
+  PERMITTED_ATTRIBUTES = %i[
+    full_name email account_number account_type bank_name branch_name currency
+    ibank
+  ].freeze
 
   private
 
@@ -41,5 +47,9 @@ class Recipient < ApplicationRecord
 
   def from_china?
     transfer.payment.uneeds_exchange.currency_from_id == 2
+  end
+
+  def cny_to_jpy?
+    jpy?
   end
 end

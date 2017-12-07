@@ -32,14 +32,16 @@ ja:
     occupation: &occupation 職業
     sender_list: &sender_list 送金人一覧
     recipient_list: &recipient_list 受取人一覧
+    recipient_info: &recipient_info 受取人情報
     email: &email メールアドレス
     account_number: &account_number 口座番号
     account_type: &account_type 口座種別
     branch_name: &branch_name 支店名
     currency: &currency 通貨
     ibank: &ibank IBANK
-    jpy: &jpy 円
-    cny: &cny 人民元
+    currencies:
+      jpy: &jpy 円
+      cny: &cny 人民元
     account_types:
       futsuu: &futsuu 普通
       chochiku: &chochiku 貯蓄
@@ -96,7 +98,7 @@ ja:
       phone: 電話番号
       post_code: 郵便番号
       occupation: 職業
-      recipient_info: 受取人情報
+      recipient_info: *recipient_info
       full_name: 口座名義人のフルネーム
       email: *email
       account_number: *account_number
@@ -154,6 +156,22 @@ ja:
       action: *action
     recipient:
       edit: *edit
+    edit:
+      title: 受取人情報編集
+      back: *back
+    form:
+      recipient_info: *recipient_info
+      full_name: *full_name
+      account_number: *account_number
+      account_type: *account_type
+      choose_account_type: 口座種別を選択してください
+      bank_name: *bank_name
+      branch_name: *branch_name
+      currency: *currency
+      choose_currency: 通貨を選択してください
+      email: *email
+      ibank: *ibank
+      update: *update
   admin:
     exchanges:
       index:

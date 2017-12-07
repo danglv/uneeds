@@ -1,0 +1,17 @@
+= simple_form_for recipient do |f|
+  .panel.panel-default
+    .panel-heading
+      = t ".recipient_info"
+    .panel-body
+      = f.input :full_name, label: t(".full_name")
+      = f.input :account_number, label: t(".account_number")
+      = f.input :account_type, collection: account_type_options,
+        prompt: t(".choose_account_type"), label: t(".account_type")
+      = f.input :bank_name, label: t(".bank_name")
+      = f.input :branch_name, label: t(".branch_name")
+      = f.input :currency, collection: currency_options,
+        prompt: t(".choose_currency"), label: t(".currency")
+      = f.input :email, label: t(".email")
+      = f.input :ibank, label: t(".ibank")
+  .col-lg-12.text-center
+    = f.submit  t(".update"), class: "btn btn-primary"

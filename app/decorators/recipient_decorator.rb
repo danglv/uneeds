@@ -15,6 +15,6 @@ class RecipientDecorator < ApplicationDecorator
   end
 
   def currency
-    I18n.t "dictionary.#{object.currency}" if object.currency
+    I18n.t "dictionary.currencies.#{object.currency}" if object.currency
   end
 end
