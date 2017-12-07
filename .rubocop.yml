@@ -76,6 +76,8 @@ Style/Documentation:
     - "config/**/*"
     - "db/**/*"
     - "test/**/*"
+    - "app/controllers/**/*_controller.rb"
+    - "app/decorators/**/*_decorator.rb"
 
 Style/DoubleNegation:
   Enabled: false

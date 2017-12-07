@@ -31,6 +31,19 @@ zh-CN:
     post_code: &post_code 郵便番号
     occupation: &occupation 職業
     sender_list: &sender_list 送金人一覧
+    recipient_list: &recipient_list 受取人一覧
+    email: &email メールアドレス
+    account_number: &account_number 口座番号
+    account_type: &account_type 口座種別
+    branch_name: &branch_name 支店名
+    currency: &currency 通貨
+    ibank: &ibank IBANK
+    jpy: &jpy 円
+    cny: &cny 人民元
+    account_types:
+      futsuu: &futsuu 普通
+      chochiku: &chochiku 貯蓄
+      touza: &touza 当座
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -44,6 +57,7 @@ zh-CN:
       exchanges: 為替管理
       transfers: 送金管理
       sender_list: *sender_list
+      recipient_list: *recipient_list
   home:
     index:
       home: *home
@@ -84,13 +98,13 @@ zh-CN:
       occupation: 職業
       recipient_info: 受取人情報
       full_name: 口座名義人のフルネーム
-      email: メールアドレス
-      account_number: 口座番号
-      account_type: 口座種別
+      email: *email
+      account_number: *account_number
+      account_type: *account_type
       bank_name: *bank_name
-      branch_name: 支店名
-      currency: カレンシー
-      ibank: IBANK
+      branch_name: *branch_name
+      currency: *currency
+      ibank: *ibank
       kind: kind
       create: 作成する
   senders:
@@ -126,6 +140,20 @@ zh-CN:
       phone: *phone
       occupation: *occupation
       update: *update
+  recipients:
+    index:
+      title: 受取人一覧
+      full_name: *full_name
+      account_number: *account_number
+      account_type: *account_type
+      bank_name: *bank_name
+      branch_name: *branch_name
+      currency: *currency
+      email: *email
+      ibank: *ibank
+      action: *action
+    recipient:
+      edit: *edit
   admin:
     exchanges:
       index:
