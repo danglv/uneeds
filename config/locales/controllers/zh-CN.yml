@@ -6,3 +6,6 @@ zh-CN:
   senders:
     update:
       success: 送金人情報の更新が成功した
+  recipients:
+    update:
+      success: 受取人情報の更新が成功した
