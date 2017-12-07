@@ -1,0 +1,20 @@
+tr
+  td
+    = recipient.full_name
+  td
+    = recipient.account_number
+  td
+    = recipient.account_type
+  td
+    = recipient.bank_name
+  td
+    = recipient.branch_name
+  td
+    = recipient.currency
+  td
+    = recipient.email
+  td
+    = recipient.ibank
+  td.text-center
+    .btn-group.navbar-btn
+      = link_to t(".edit"), "javascript:void(0)", class: "btn btn-info"

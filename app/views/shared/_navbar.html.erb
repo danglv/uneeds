@@ -26,18 +26,22 @@
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li> -->
-        <% if current_user && current_user.has_role?(:admin) %>
-          <li>
-            <%= navbar_link_to t(".exchanges"),
-                                admin_exchanges_path,
-                                :active_when => { :controller => "admin/exchanges" } %>
-          </li>
-          <li>
-            <%= navbar_link_to t(".transfers"),
-                                admin_transfers_path,
-                                :active_when => { :controller => "admin/transfers" }%>
-          </li>
-
+        <% if current_user %>
+          <% if current_user.has_role?(:admin) %>
+            <li>
+              <%= navbar_link_to t(".exchanges"),
+                                  admin_exchanges_path,
+                                  :active_when => { :controller => "admin/exchanges" } %>
+            </li>
+            <li>
+              <%= navbar_link_to t(".transfers"),
+                                  admin_transfers_path,
+                                  :active_when => { :controller => "admin/transfers" }%>
+            </li>
+          <% else %>
+            <li><%= link_to t(".sender_list"), senders_path %></li>
+            <li><%= link_to t(".recipient_list"), recipients_path %></li>
+          <% end %>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -48,7 +52,6 @@
           <%= link_to image_tag("ensigns/cny.png", width: 24, height: 24), {locale: "zh-CN"} %>
         </li>
         <% if current_user %>
-          <li><%= link_to t(".sender_list"), senders_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email%> <span class="caret"></span></a>
             <ul class="dropdown-menu">

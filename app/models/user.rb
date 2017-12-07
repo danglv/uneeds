@@ -31,4 +31,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :transfers, dependent: :destroy
   has_many :senders, dependent: :destroy
+  has_many :recipients, dependent: :destroy
 end
