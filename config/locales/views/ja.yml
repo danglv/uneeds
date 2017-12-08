@@ -31,6 +31,7 @@ ja:
     post_code: &post_code 郵便番号
     occupation: &occupation 職業
     sender_list: &sender_list 送金人一覧
+    sender_info: &sender_info 送金人情報
     recipient_list: &recipient_list 受取人一覧
     recipient_info: &recipient_info 受取人情報
     email: &email メールアドレス
@@ -46,6 +47,8 @@ ja:
       futsuu: &futsuu 普通
       chochiku: &chochiku 貯蓄
       touza: &touza 当座
+    failure:
+      get_fee: &get_fee 手数料を得ることができなかった
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -80,26 +83,29 @@ ja:
   transfers:
     new:
       title: 送金
-    form:
+    payment:
       transfer_info: 送金情報
       amount: 送金する金額
-      guaranteed_rate: "レート保証: "
-      fee: "手数料: "
-      amount_will_transfer: 両替額
-      sender_info: 送金人情報
-      address: 住所(ローマ字)
-      first_name: メイ(半角ローマ字)
-      last_name: セイ(半角ローマ字)
-      first_name_katakana: 名前(カナ)
-      last_name_katakana: 苗字(カナ)
-      birthday: 生年月日(西暦)
-      country: 国
-      city: 都道府県
-      phone: 電話番号
-      post_code: 郵便番号
-      occupation: 職業
+      guaranteed_rate: "レート保証:  "
+      fee: "手数料:  "
+      amount_will_transfer: "両替額:  "
+      recipient_get: 受取する金額
+    sender:
+      sender_info: *sender_info
+      address: *address
+      first_name: *first_name
+      last_name: *last_name
+      first_name_katakana: *first_name_katakana
+      last_name_katakana: *last_name_katakana
+      birthday: *birthday
+      country: *country
+      city: *city
+      phone: *phone
+      post_code: *post_code
+      occupation: *occupation
+    recipient:
       recipient_info: *recipient_info
-      full_name: 口座名義人のフルネーム
+      full_name: *full_name
       email: *email
       account_number: *account_number
       account_type: *account_type
@@ -107,7 +113,7 @@ ja:
       branch_name: *branch_name
       currency: *currency
       ibank: *ibank
-      kind: kind
+    form:
       create: 作成する
   senders:
     index:
@@ -128,7 +134,7 @@ ja:
       title: 送金人情報編集
       back: *back
     form:
-      sender_info: 送金人情報
+      sender_info: *sender_info
       first_name: *first_name
       first_name_katakana: *first_name_katakana
       last_name: *last_name

@@ -1,0 +1,33 @@
+.panel.panel-default
+  .panel-heading
+    = t(".transfer_info")
+  .panel-body
+    = f.simple_fields_for :payment do |payment|
+      span#failure_to_get_fee style="display: none;"
+        = I18n.t "dictionary.failure.get_fee"
+      = payment.hidden_field :exchange_id, value: support.exchange_id,
+        id: "payment_exchange_id"
+      = payment.input :amount, class: "form-control string required",
+        input_html: {id: "amount"}, label: t(".amount")
+      .row
+        .col-lg-6
+          .transfer_fee
+            = t ".fee"
+            span.fee#fee
+          .real_amount
+            = t ".amount_will_transfer"
+            span.amount#real_amount
+          .exchange
+            = t ".guaranteed_rate"
+            span#payment_guaranteed_rate
+              = support.guaranteed_rate
+        .col-lg-6
+          .exchange_currency
+            span.from_ensign
+              = render "#{support.from_currency}_ensign", support: support
+            i.fa.fa-exchange.btn.btn-success
+            span.to_ensign
+              = render "#{support.to_currency}_ensign", support: support
+      .form-group.string.required
+        lable for="transfer_amount" = t ".recipient_get"
+        input.form-control.string.transfer_amount#transfer_amount

@@ -19,7 +19,7 @@
   margin-bottom: 15px;
 }
 
-.currency_ensign {
+.from_ensign, .to_ensign {
   display: inline-block;
   padding: 6px 12px;
   font-size: 14px;

@@ -1,0 +1,24 @@
+.panel.panel-default
+  .panel-heading
+    a.toggle-arrow.collapsed data= {toggle: "collapse", target: "#sender_info"} href = "javascript:void()"
+      = t ".sender_info"
+      b.caret
+  .panel-body#sender_info.collapse
+    = f.simple_fields_for :sender do |sender|
+      = sender.hidden_field :user_id, value: current_user.id
+      .sender_info_name
+        .sender_name
+          = sender.input :first_name, label: t(".first_name")
+          = sender.input :last_name, label: t(".last_name")
+        #sender_katakana_name style="#{'display: none;' if support.from_cny?}"
+          = sender.input :first_name_katakana, label: t(".first_name_katakana")
+          = sender.input :last_name_katakana, label: t(".last_name_katakana")
+      = sender.input :birthday, as: :date, html5: true, label: t(".birthday")
+      = sender.input :country, collection: country_options, label: t(".country")
+      = sender.input :city, label: t(".city")
+      = sender.input :address, label: t(".address")
+      = sender.input :phone, label: t(".phone")
+      = sender.input :post_code, label: t(".post_code")
+      = sender.input :occupation, label: t(".occupation")
+      = sender.hidden_field :currency, value: support.from_currency,
+        id: "sender_currency"
