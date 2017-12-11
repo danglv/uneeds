@@ -1,5 +1,9 @@
-class RecipientDecorator < ApplicationDecorator
+class TransferDecorator < ApplicationDecorator
+  decorates_association :payment
+  decorates_association :sender
   delegate_all
+  delegate :full_name, to: :sender, prefix: true
+  delegate :decorated_currency, to: :payment
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
@@ -9,12 +13,7 @@ class RecipientDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-  def account_type
-    I18n.t "dictionary.account_types.#{object.account_type}" if
-      object.account_type
-  end
-
-  def decorated_currency
-    I18n.t "dictionary.currencies.#{object.currency}" if object.currency
+  def created_time
+    format_datetime created_at, :time_format
   end
 end

@@ -1,0 +1,18 @@
+td
+  .row
+    = t(".full_name", name: sender.full_name)
+  .row
+    = t(".full_name_katakana", name: sender.full_name_katakana)
+  .row
+    = t(".birthday", date: sender.birthday)
+  .row
+    div class = "#{sender.currency}"
+td
+  .row
+    = t(".detail_address", country: sender.country, city: sender.city, address: sender.address)
+  .row
+    = sender.post_code
+  .row
+    = t(".phone", phone: sender.phone)
+  .row
+    = t(".occupation", occupation: sender.occupation)

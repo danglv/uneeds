@@ -1,0 +1,29 @@
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        .row
+          .col-lg-3
+            = transfer.created_time
+          .col-lg-3
+            = t(".amount", amount: transfer.payment_amount,
+              currency: transfer.decorated_currency)
+          .col-lg-3
+            = t(".sender", full_name: transfer.sender_full_name)
+          .col-lg-3
+            = t(".recipient", full_name: transfer.recipient_full_name)
+      .panel-body
+        table.table.table-hover.table-index width="100%"
+          tbody
+            tr
+              td.text-center = t ".payment_info"
+              = render "transfers/transfer_info/payment",
+                payment: transfer.payment
+            tr
+              td.text-center = t ".sender_info"
+              = render "transfers/transfer_info/sender", sender: transfer.sender
+            tr
+              td.text-center = t ".recipient_info"
+              = render "transfers/transfer_info/recipient",
+                recipient: transfer.recipient
+
