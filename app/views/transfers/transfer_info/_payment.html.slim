@@ -1,0 +1,7 @@
+td
+  .row = t(".amount", amount: payment.amount, currency: payment.decorated_currency)
+  .row = t(".fee", fee: payment.fee, currency: payment.decorated_currency)
+  .row = t(".transfer_amount", transfer_amount: payment.transfer_amount,
+    currency: payment.decorated_currency)
+td
+  .row = t(".guaranteed_rate", guaranteed_rate: payment.guaranteed_rate)

@@ -1,0 +1,15 @@
+td
+  .row
+    = t(".full_name", name: recipient.full_name)
+  .row
+    = t(".email", email: recipient.email)
+  .row
+    div class = "#{recipient.currency}"
+td
+  .row
+    = t(".bank", bank_name: recipient.bank_name,
+      branch_name: recipient.branch_name, ibank: recipient.ibank)
+  .row
+    = t(".account_number", account_number: recipient.account_number)
+  .row
+    = recipient.account_type

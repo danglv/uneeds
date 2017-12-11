@@ -28,10 +28,10 @@ class Transfer < ApplicationRecord
   belongs_to :recipient
   belongs_to :payment
 
-  delegate :exchange_id, :guaranteed_rate, to: :payment, prefix: true,
+  delegate :exchange_id, :guaranteed_rate, :amount, to: :payment, prefix: true,
     allow_nil: true
   delegate :currency, to: :sender, prefix: true, allow_nil: true
-  delegate :currency, to: :recipient, prefix: true, allow_nil: true
+  delegate :currency, :full_name, to: :recipient, prefix: true, allow_nil: true
 
   accepts_nested_attributes_for :sender, :recipient, :payment
   ATTRIBUTES = [

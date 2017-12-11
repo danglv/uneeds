@@ -34,6 +34,8 @@ zh-CN:
     sender_info: &sender_info 送金人情報
     recipient_list: &recipient_list 受取人一覧
     recipient_info: &recipient_info 受取人情報
+    transfer_list: &transfer_list 送金一覧
+    payment_info: &payment_info 支払情報
     email: &email メールアドレス
     account_number: &account_number 口座番号
     account_type: &account_type 口座種別
@@ -52,6 +54,7 @@ zh-CN:
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
+      time_format: "%Y年%m月%d日 %H時%M分"
   shared:
     navbar:
       home: *home
@@ -63,6 +66,7 @@ zh-CN:
       transfers: 送金管理
       sender_list: *sender_list
       recipient_list: *recipient_list
+      transfer_list: *transfer_list
   home:
     index:
       home: *home
@@ -115,6 +119,33 @@ zh-CN:
       ibank: *ibank
     form:
       create: 作成する
+    index:
+      title: *transfer_list
+    transfer:
+      payment_info: *payment_info
+      sender_info: *sender_info
+      recipient_info: *recipient_info
+      amount: "送金する金額: %{amount} %{currency}"
+      sender: "送金人: %{full_name}"
+      recipient: "受取人: %{full_name}"
+    transfer_info:
+      payment:
+        amount: "送金する金額: %{amount} %{currency}"
+        guaranteed_rate: "レート保証: %{guaranteed_rate}"
+        fee: "手数料: %{fee} %{currency}"
+        transfer_amount: "受取する金額: %{transfer_amount} %{currency}"
+      sender:
+        full_name: "フルネーム: %{name}"
+        full_name_katakana: "フルネーム(カナ): %{name}"
+        birthday: "誕生日: %{date}"
+        detail_address: "住所: %{address}、 %{city}、 %{country}"
+        phone: "電話: %{phone}"
+        occupation: "職業: %{occupation}"
+      recipient:
+        full_name: "フルネーム: %{name}"
+        email: "メールアドレス: %{email}"
+        bank: "%{bank_name} 銀行、 %{branch_name} 支店 [%{ibank}]"
+        account_number: "口座番号: %{account_number}"
   senders:
     index:
       title: 送金人一覧

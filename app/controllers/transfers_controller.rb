@@ -1,5 +1,9 @@
 # TransfersController
 class TransfersController < ApplicationController
+  def index
+    @transfers = current_user.transfers.order(created_at: :desc).decorate
+  end
+
   def new
     @transfer = Transfer.new
     support.build_associations

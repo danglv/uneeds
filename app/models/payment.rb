@@ -25,6 +25,8 @@ class Payment < ApplicationRecord
   validates_numericality_of :amount, greater_than: Proc.new(&:fee)
   before_create :set_guaranteed_rate
 
+  delegate :sender_currency, to: :transfer, allow_nil: true
+
   private
 
   def set_guaranteed_rate
