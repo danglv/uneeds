@@ -22,11 +22,12 @@ class Payment < ApplicationRecord
   has_one :transfer, dependent: :nullify
 
   validates :amount, presence: true
+  validates_numericality_of :amount, greater_than: Proc.new(&:fee)
   before_create :set_guaranteed_rate
 
   private
 
   def set_guaranteed_rate
-    self.guaranteed_rate = exchange.guaranteed_rate
+    self.guaranteed_rate = uneeds_exchange.guaranteed_rate
   end
 end

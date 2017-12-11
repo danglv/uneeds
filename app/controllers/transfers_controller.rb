@@ -1,35 +1,28 @@
 # TransfersController
 class TransfersController < ApplicationController
-  before_action :load_transfer, only: [:edit]
   def new
     @transfer = Transfer.new
-    @transfer.build_sender
-    @transfer.build_recipient
-    @transfer.build_payment
-    @exchange_jpy = Exchange.find 1
-    @exchange_cny = Exchange.find 2
-  end
-
-  def edit
+    support.build_associations
   end
 
   def create
     @transfer = Transfer.new(transfer_params)
     set_transfer_attributes
     if @transfer.save
-      flash.now[:notice] = "success"
+      flash.notice = t ".success"
       redirect_to root_path
     else
-      flash.now[:error] = "error"
-      @exchange_jpy = Exchange.find 1
-      @exchange_cny = Exchange.find 2
-      render :edit
+      support
+      render :new
     end
   end
 
   def fee
-    fee = TransferFeeService.new(params[:amount].to_f).fee
-    render json: { fee: fee }
+    # TODO : Change calculate fee service depend on amount and exchange_id
+    amount = params[:amount].to_f
+    fee = TransferFeeService.new(amount).fee
+    msg = I18n.t("errors.messages.greater_than", count: fee) if amount <= fee
+    render json: { fee: fee, msg: msg }
   end
 
   private
@@ -43,9 +36,27 @@ class TransfersController < ApplicationController
   end
 
   def set_transfer_attributes
-    fee = TransferFeeService.new(@transfer.payment.amount).fee
-    @transfer.payment.fee = fee
-    @transfer.payment.transfer_amount = @transfer.payment.amount.to_f - fee
+    @transfer.payment.fee = payment_fee
+    @transfer.payment.guaranteed_rate = guaranteed_rate
+    @transfer.payment.transfer_amount = (
+      @transfer.payment.amount.to_f - payment_fee
+    ) * guaranteed_rate
     @transfer.user = current_user
+  end
+
+  def payment_fee
+    TransferFeeService.new(@transfer.payment.amount).fee
+  end
+
+  def guaranteed_rate
+    UneedsExchange.find(exchange_id).guaranteed_rate
+  end
+
+  def exchange_id
+    params[:transfer][:payment_attributes][:exchange_id]
+  end
+
+  def support
+    @support = TransferSupport.new @transfer
   end
 end

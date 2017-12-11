@@ -1,77 +1,83 @@
 $(function() {
-  function change_ensign() {
-    var jpy = $(".ensign.jpy");
-    var cny = $(".ensign.cny");
-    jpy.removeClass("jpy").addClass("cny");
-    cny.removeClass("cny").addClass("jpy");
-  }
-
-  function init_ensign() {
-    var exchange_id = $("#transfer_payment_attributes_exchange_id").val();
-    var ensign = exchange_id == "1" ? "cny" : "jpy";
-    if (exchange_id == "2") {change_ensign()};
-    $(".exchange_" + ensign).toggle();
-    if (ensign == "jpy") {
-      $(".sender_info_name_jpy").toggle();
-    }
+  function swap_ensign() {
+    from_exchange = $(".from_ensign").html();
+    to_exchange = $(".to_ensign").html();
+    $(".from_ensign").html(to_exchange);
+    $(".to_ensign").html(from_exchange);
   }
 
   function change_exchange() {
-    var exchange_id = $("#transfer_payment_attributes_exchange_id").val();
-    var new_exchange_id = (exchange_id % 2) + 1;
-    $("#transfer_payment_attributes_exchange_id").val(new_exchange_id);
+    exchange_id = $(".from_ensign .ensign").data("exchange-id");
+    rate = $(".from_ensign .ensign").data("guaranteed-rate");
+    $("#payment_exchange_id").val(exchange_id);
+    $("#payment_guaranteed_rate").text(rate);
   }
 
   function change_amount() {
-    var amount = $("#transfer_amount").val()/$(".guaranteed_rate:visible").text();
-    $("#transfer_payment_attributes_amount").val(amount);
+    //Call when user change transfer_amount (recipient get)
+    transfer_amount = $("#transfer_amount").val();
+    guaranteed_rate = $("#payment_guaranteed_rate").text();
+    fee = parseFloat($("#fee").text());
+    amount = transfer_amount/guaranteed_rate + fee;
+    $("#amount").val(amount);
   }
-  // init ensign
-  init_ensign();
 
-  $('.fa-exchange').on("click", function(){
-    change_exchange();
-    change_ensign();
-
-    $(".exchange").children().each(function(){
-      $(this).toggle();
-    });
-    $(".sender_info_name_jpy").toggle();
-
-    var transfer_amount = $(".guaranteed_rate:visible").text() * $("#transfer_payment_attributes_amount").val();
-    $("input.transfer_amount").val(transfer_amount);
-  });
-
-  $("#transfer_payment_attributes_amount").on("change", function(){
-    var amount = $("#transfer_payment_attributes_amount").val();
-
-
+  function calculate_fee() {
+    amount = $("#amount").val();
+    if(amount.length == 0) return;
+    exchange_id = $("#payment_exchange_id").val();
     $.ajax({
       type: "POST",
       contentType: "application/json; charset=utf-8",
       url: "/transfers/fee",
-      data: JSON.stringify({amount: amount}),
+      data: JSON.stringify({amount: amount, exchange_id: exchange_id}),
       dataType: "json",
       success: function (result) {
-        $(".transfer_fee .fee").text(result["fee"]);
-        var real_amount = amount - result["fee"];
-        $(".real_amount .amount").text(real_amount);
-        if (amount - result["fee"] <= 0) {
-          var error_str = '<span class="help-block">amount must be greater than fee!</span>';
+        fee = result["fee"];
+        $("#fee").text(fee);
+
+        if (amount - fee <= 0) {
+          error_str = "<span class='help-block'>" + result["msg"] + "</span>"
           $(".transfer_payment_amount").addClass("has-error");
           $(".transfer_payment_amount").find("span").remove();
           $(".transfer_payment_amount").append(error_str);
         } else {
           $(".transfer_payment_amount").removeClass("has-error");
           $(".transfer_payment_amount").find("span").remove();
-          var transfer_amount = $(".guaranteed_rate:visible").text() * real_amount;
-          $("input.transfer_amount").val(transfer_amount);
+          real_amount = amount - fee;
+          guaranteed_rate = $("#payment_guaranteed_rate").text();
+          transfer_amount = real_amount * guaranteed_rate;
+          $("#real_amount").text(real_amount);
+          $("#transfer_amount").val(transfer_amount);
         }
       },
       error: function (){
-        window.alert("get fee fail!");
+        error_msg = $("#failure_to_get_fee").text();
+        window.alert(error_msg);
       }
     });
+  }
+
+  function change_input_currency() {
+    from_currency = $(".from_ensign .ensign").data("currency");
+    $("#sender_currency").val(from_currency);
+
+    to_currency = $(".to_ensign .ensign").data("currency");
+    $("#recipient_currency").val(to_currency);
+  }
+
+  calculate_fee();
+
+  $(".fa-exchange").on("click", function(){
+    swap_ensign();
+    change_exchange();
+    calculate_fee();
+    $("#sender_katakana_name").toggle();
+    change_input_currency();
+  });
+
+  $("#amount").on("change", function(){
+    calculate_fee();
   });
 
   $("#transfer_amount").on("change", function(){

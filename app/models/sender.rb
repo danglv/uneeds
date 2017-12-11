@@ -33,6 +33,7 @@ class Sender < ApplicationRecord
             presence: true, if: :from_japan?
 
   enum country: %i[china japan]
+  enum currency: %i[jpy cny]
 
   PERMITTED_ATTRIBUTES = %i[
     first_name last_name first_name_katakana last_name_katakana country city

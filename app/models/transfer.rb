@@ -28,12 +28,17 @@ class Transfer < ApplicationRecord
   belongs_to :recipient
   belongs_to :payment
 
+  delegate :exchange_id, :guaranteed_rate, to: :payment, prefix: true,
+    allow_nil: true
+  delegate :currency, to: :sender, prefix: true, allow_nil: true
+  delegate :currency, to: :recipient, prefix: true, allow_nil: true
+
   accepts_nested_attributes_for :sender, :recipient, :payment
   ATTRIBUTES = [
     payment_attributes: %i[exchange_id amount user_id],
     sender_attributes: %i[first_name last_name birthday country city phone
                           post_code occupation user_id first_name_katakana
-                          last_name_katakana address],
+                          last_name_katakana address currency],
     recipient_attributes: %i[full_name email account_number account_type kind
                              bank_name branch_name currency ibank user_id]
   ].freeze
