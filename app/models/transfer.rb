@@ -4,6 +4,7 @@
 #
 #  created_at     :datetime         not null
 #  id             :integer          not null, primary key
+#  kind           :integer          default(0)
 #  payment_id     :integer
 #  recipient_data :json
 #  recipient_id   :integer
@@ -25,8 +26,9 @@
 class Transfer < ApplicationRecord
   belongs_to :user
   belongs_to :sender
-  belongs_to :recipient
-  belongs_to :payment
+  belongs_to :recipient, optional: true
+  belongs_to :payment, optional: true
+  enum kind: %i[below above]
 
   delegate :exchange_id, :guaranteed_rate, :amount, to: :payment, prefix: true,
     allow_nil: true
@@ -35,6 +37,7 @@ class Transfer < ApplicationRecord
 
   accepts_nested_attributes_for :sender, :recipient, :payment
   ATTRIBUTES = [
+    :kind,
     payment_attributes: %i[exchange_id amount user_id],
     sender_attributes: %i[first_name last_name birthday country city phone
                           post_code occupation user_id first_name_katakana
@@ -42,6 +45,9 @@ class Transfer < ApplicationRecord
     recipient_attributes: %i[full_name email account_number account_type kind
                              bank_name branch_name currency ibank user_id]
   ].freeze
+
+  scope :below, -> {where "kind = ?", 0}
+  scope :above, -> {where "kind = ?", 1}
 
   before_create :set_data
 

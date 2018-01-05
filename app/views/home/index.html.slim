@@ -1,8 +1,21 @@
 - provide :title, t(".home")
-= link_to t(".send_money"), new_transfer_path, class: "btn btn-success"
+= link_to t(".send_money"), new_transfer_path, class: "btn btn-success", remote: true, data: {toggle: "modal", target: "#modal_transfer_new"}
 .row
   .col-lg-12
     = render "bank_exchanges", exchanges: @bank_exchanges
 .row
   .col-lg-12
     = render "uneeds_exchanges", exchanges: @uneeds_exchanges
+#modal_transfer_new.modal aria-hidden="true" role="dialog"
+  .modal-header
+    button.close data-dismiss="modal" type="button"
+      span &times;
+    h3.modal-title
+      = t(".transfer_new_modal_title")
+  .modal-body.text-center
+    .form-group
+      .row
+        .col-lg-6
+          = link_to t(".below"), new_transfer_path(kind: "below"), class: "btn btn-success form-control center-block"
+        .col-lg-6
+          = link_to t(".above"), new_transfer_path(kind: "above"), class: "btn btn-success form-control center-block"

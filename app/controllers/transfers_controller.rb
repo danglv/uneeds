@@ -1,21 +1,26 @@
 # TransfersController
 class TransfersController < ApplicationController
   def index
-    @transfers = current_user.transfers.order(created_at: :desc).decorate
+    @transfers_below = current_user.transfers.below.order(created_at: :desc).decorate
+    @transfers_above = current_user.transfers.above.order(created_at: :desc).decorate
   end
 
   def new
-    @transfer = Transfer.new
+    @kind = params[:kind]
+    @transfer = Transfer.new(kind: @kind)
     support.build_associations
   end
 
   def create
     @transfer = Transfer.new(transfer_params)
-    set_transfer_attributes
+    @kind = @transfer.kind
+    @transfer.user = current_user
+    set_transfer_attributes if @transfer.kind == Transfer.kinds.keys.first
     if @transfer.save
       flash.notice = t ".success"
       redirect_to root_path
     else
+      @transfer.errors.messages
       support
       render :new
     end

@@ -7,6 +7,7 @@
 #  city                :string
 #  country             :integer
 #  created_at          :datetime         not null
+#  currency            :integer
 #  first_name          :string
 #  first_name_katakana :string
 #  id                  :integer          not null, primary key
@@ -27,8 +28,9 @@
 class Sender < ApplicationRecord
   belongs_to :user
   has_one :transfer, dependent: :nullify
-  validates :address, :birthday, :city, :country, :occupation, :phone,
-            :post_code, :first_name, :last_name, presence: true
+  validates :address, :birthday, :city, :country, :occupation,
+            :post_code, presence: true, if: :below_kind?
+  validates :first_name, :last_name, :phone, presence: true
   validates :first_name_katakana, :last_name_katakana,
             presence: true, if: :from_japan?
 
@@ -43,10 +45,15 @@ class Sender < ApplicationRecord
   private
 
   def from_japan?
+    return false unless below_kind?
     transfer.payment.uneeds_exchange.currency_from_id == 1
   end
 
   def from_china?
     transfer.payment.uneeds_exchange.currency_from_id == 2
+  end
+
+  def below_kind?
+    transfer.kind == Transfer.kinds.keys.first
   end
 end

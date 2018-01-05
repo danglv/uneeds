@@ -1,2 +1,5 @@
 - provide :title, t(".title")
-= render "form", transfer: @transfer, support: @support
+- if @kind && @kind == "above"
+  = render "form_above", transfer: @transfer, support: @support
+- else
+  = render "form", transfer: @transfer, support: @support

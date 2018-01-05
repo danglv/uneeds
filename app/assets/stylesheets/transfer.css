@@ -47,3 +47,12 @@
   flex-direction: column;
   border-right: solid 1px;
 }
+
+#modal_transfer_new {
+  width: 600px;
+  height: 200px;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+  background-color: white;
+}

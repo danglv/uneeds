@@ -71,6 +71,9 @@ zh-CN:
     index:
       home: *home
       send_money: 送金する
+      transfer_new_modal_title: "転送のタイプを選択する"
+      below: "$ 10,000以下"
+      above: "$ 10,000以上"
     bank_exchanges:
       today_exchange: 本日の為替
       bank_name: *bank_name
@@ -119,8 +122,12 @@ zh-CN:
       ibank: *ibank
     form:
       create: 作成する
+    form_above:
+      create: 作成する
     index:
       title: *transfer_list
+      below: "$ 10,000以下"
+      above: "$ 10,000以上"
     transfer:
       payment_info: *payment_info
       sender_info: *sender_info
@@ -128,6 +135,8 @@ zh-CN:
       amount: "送金する金額: %{amount} %{currency}"
       sender: "送金人: %{full_name}"
       recipient: "受取人: %{full_name}"
+    transfer_above:
+      sender: "送金人: %{full_name}"
     transfer_info:
       payment:
         amount: "送金する金額: %{amount} %{currency}"
@@ -141,6 +150,9 @@ zh-CN:
         detail_address: "住所: %{address}、 %{city}、 %{country}"
         phone: "電話: %{phone}"
         occupation: "職業: %{occupation}"
+      sender_above:
+        full_name: "フルネーム: %{name}"
+        phone: "電話: %{phone}"
       recipient:
         full_name: "フルネーム: %{name}"
         email: "メールアドレス: %{email}"

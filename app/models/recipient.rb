@@ -26,8 +26,8 @@ class Recipient < ApplicationRecord
   belongs_to :user
   has_many :transfers, dependent: :nullify
 
-  validates :account_number, :bank_name, :branch_name,
-            :email, :full_name, :ibank, :currency, presence: true
+  validates :account_number, :bank_name, :branch_name, :email, :full_name,
+            :ibank, :currency, presence: true
 
   validates :account_type, presence: true, if: :cny_to_jpy?
 
@@ -50,6 +50,7 @@ class Recipient < ApplicationRecord
   end
 
   def cny_to_jpy?
+    # return false unless below_kind?
     jpy?
   end
 end

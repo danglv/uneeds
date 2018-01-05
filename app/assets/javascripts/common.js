@@ -22,4 +22,10 @@ $(function() {
   $(document).ajaxSuccess(function() {
     $("#page-loader").addClass("hide");
   });
+
+  $(".new_transfer_modal_submit").on("click", function() {
+    url = $("a[data-target='#modal_transfer_new']").attr("href");
+    type_money = $("#choice_money").val();
+    window.location.href = url + "?type=" + type_money;
+  });
 });
