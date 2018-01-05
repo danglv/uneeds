@@ -255,3 +255,7 @@ ja:
         cn_name: 名(CN)
         guaranteed_rate: *guaranteed_rate
         update: *update
+    transfers:
+      index:
+        below: "$ 10,000以下"
+        above: "$ 10,000以上"

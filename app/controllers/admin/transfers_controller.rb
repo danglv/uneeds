@@ -1,6 +1,7 @@
 # transfer
 class Admin::TransfersController < Admin::BaseController
   def index
-    @transfers = Transfer.all
+    @transfers_below = Transfer.below
+    @transfers_above = Transfer.above
   end
 end

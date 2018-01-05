@@ -1,88 +1,136 @@
 - provide(:title, "Transfers")
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#below"
+      = t(".below")
+  li
+    a data-toggle="tab" href="#above"
+      = t(".above")
+.tab-content
+  #below.tab-pane.fade.in.active
+    .content
+      .block
+        .block-content
+          .row
+            .col-xs-9
+            .col-xs-3
+          .table-responsive
+            table.table.table-striped
+              thead
+                tr
+                  th.text-center STT
+                  th Id
+                  th status
+                  th Sender
+                  th Recipient
+                  th Amount
+                  th Fee
+                  th Transfer Amount
+                  th Created_at
+                  th.text-left style=("width: 10%")
 
+              tbody
+                tbody
+                  - if @transfers_below
+                    - @transfers_below.each_with_index do |t, index|
+                      tr
+                        td.text-center
+                          = index + 1
+                        td
+                          = t.id
+                        td
+                          = t.status
+                        td.text-left style=("width: 30%")
+                          | first name :
+                          = t.sender_data["first_name"]
+                          | <br> Last name :
+                          = t.sender_data["last_name"]
+                          | <br> Birthday :
+                          = t.sender_data["birthday"]
+                          | <br> phone :
+                          = t.sender_data["phone"]
+                          | <br> country :
+                          = t.sender_data["country"]
+                          | <br> Address :
+                          = t.sender_data["address"]
+                          | <br> City :
+                          = t.sender_data["city"]
+                          | <br> Post code :
+                          = t.sender_data["post_code"]
+                          | <br> First name katakana :
+                          = t.sender_data["first_name_katakana"]
+                          | <br> Last name katakana :
+                          = t.sender_data["last_name_katakana"]
+                          | <br> Occupation :
+                          = t.sender_data["occupation"]
 
-.content
-  .block
-    .block-content
-      .row
-        .col-xs-9
-        .col-xs-3
-      .table-responsive
-        table.table.table-striped
-          thead
-            tr
-              th.text-center STT
-              th Id
-              th status
-              th Sender
-              th Recipient
-              th Amount
-              th Fee
-              th Transfer Amount
-              th Created_at
-              th.text-left style=("width: 10%")
+                        td.text-left style=("width: 30%")
+                          | Email :
+                          = t.recipient_data["email"]
+                          | <br> Full name :
+                          = t.recipient_data["full_name"]
+                          | <br> Ibank :
+                          = t.recipient_data["ibank"]
+                          | <br> Currency :
+                          = t.recipient_data["currency"]
+                          | <br> Kind :
+                          = t.recipient_data["kind"]
+                          | <br> Bank name :
+                          = t.recipient_data["bank_name"]
+                          | <br> Branch name :
+                          = t.recipient_data["branch_name"]
+                          | <br> Account number :
+                          = t.recipient_data["account_number"]
+                          | <br> Account type :
+                          = t.recipient_data["account_type"]
+                        td
+                          = t.payment.amount
+                        td
+                          = t.payment.fee
+                        td
+                          = t.payment.transfer_amount
+                        td
+                          = t.created_at
+                        td.text-center
+                          .btn-group.navbar-btn
+  #above.tab-pane.fade
+    .content
+      .block
+        .block-content
+          .row
+            .col-xs-9
+            .col-xs-3
+          .table-responsive
+            table.table.table-striped
+              thead
+                tr
+                  th.text-center STT
+                  th Id
+                  th status
+                  th Sender
+                  th Created_at
+                  th.text-left style=("width: 10%")
 
-          tbody
-            tbody
-              - if @transfers
-                - @transfers.each_with_index do |t, index|
-                  tr
-                    td.text-center
-                      = index + 1
-                    td
-                      = t.id
-                    td
-                      = t.status
-                    td.text-left style=("width: 30%")
-                      | first name :
-                      = t.sender_data["first_name"]
-                      | <br> Last name :
-                      = t.sender_data["last_name"]
-                      | <br> Birthday :
-                      = t.sender_data["birthday"]
-                      | <br> phone :
-                      = t.sender_data["phone"]
-                      | <br> country :
-                      = t.sender_data["country"]
-                      | <br> Address :
-                      = t.sender_data["address"]
-                      | <br> City :
-                      = t.sender_data["city"]
-                      | <br> Post code :
-                      = t.sender_data["post_code"]
-                      | <br> First name katakana :
-                      = t.sender_data["first_name_katakana"]
-                      | <br> Last name katakana :
-                      = t.sender_data["last_name_katakana"]
-                      | <br> Occupation :
-                      = t.sender_data["occupation"]
+              tbody
+                tbody
+                  - if @transfers_above
+                    - @transfers_above.each_with_index do |t, index|
+                      tr
+                        td.text-center
+                          = index + 1
+                        td
+                          = t.id
+                        td
+                          = t.status
+                        td.text-left style=("width: 30%")
+                          | first name :
+                          = t.sender_data["first_name"]
+                          | <br> Last name :
+                          = t.sender_data["last_name"]
+                          | <br> phone :
+                          = t.sender_data["phone"]
+                        td
+                          = t.created_at
+                        td.text-center
+                          .btn-group.navbar-btn
 
-                    td.text-left style=("width: 30%")
-                      | Email :
-                      = t.recipient_data["email"]
-                      | <br> Full name :
-                      = t.recipient_data["full_name"]
-                      | <br> Ibank :
-                      = t.recipient_data["ibank"]
-                      | <br> Currency :
-                      = t.recipient_data["currency"]
-                      | <br> Kind :
-                      = t.recipient_data["kind"]
-                      | <br> Bank name :
-                      = t.recipient_data["bank_name"]
-                      | <br> Branch name :
-                      = t.recipient_data["branch_name"]
-                      | <br> Account number :
-                      = t.recipient_data["account_number"]
-                      | <br> Account type :
-                      = t.recipient_data["account_type"]
-                    td
-                      = t.payment.amount
-                    td
-                      = t.payment.fee
-                    td
-                      = t.payment.transfer_amount
-                    td
-                      = t.created_at
-                    td.text-center
-                      .btn-group.navbar-btn
