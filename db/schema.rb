@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105032553) do
+ActiveRecord::Schema.define(version: 20180115082423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20180105032553) do
   create_table "recipients", force: :cascade do |t|
     t.string "email"
     t.string "full_name"
-    t.string "ibank"
     t.integer "currency"
     t.string "kind"
     t.string "bank_name"
@@ -66,21 +65,14 @@ ActiveRecord::Schema.define(version: 20180105032553) do
   end
 
   create_table "senders", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.datetime "birthday"
     t.string "phone"
-    t.integer "country"
-    t.string "address"
-    t.string "city"
-    t.string "post_code"
-    t.string "first_name_katakana"
-    t.string "last_name_katakana"
-    t.string "occupation"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "currency"
+    t.string "name"
+    t.string "name_katakana"
+    t.string "wechat_id"
     t.index ["user_id"], name: "index_senders_on_user_id"
   end
 

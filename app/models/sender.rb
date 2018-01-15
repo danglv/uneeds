@@ -2,22 +2,15 @@
 #
 # Table name: senders
 #
-#  address             :string
-#  birthday            :datetime
-#  city                :string
-#  country             :integer
-#  created_at          :datetime         not null
-#  currency            :integer
-#  first_name          :string
-#  first_name_katakana :string
-#  id                  :integer          not null, primary key
-#  last_name           :string
-#  last_name_katakana  :string
-#  occupation          :string
-#  phone               :string
-#  post_code           :string
-#  updated_at          :datetime         not null
-#  user_id             :integer
+#  created_at    :datetime         not null
+#  currency      :integer
+#  id            :integer          not null, primary key
+#  name          :string
+#  name_katakana :string
+#  phone         :string
+#  updated_at    :datetime         not null
+#  user_id       :integer
+#  wechat_id     :string
 #
 # Indexes
 #
@@ -28,19 +21,14 @@
 class Sender < ApplicationRecord
   belongs_to :user
   has_one :transfer, dependent: :nullify
-  validates :address, :birthday, :city, :country, :occupation,
-            :post_code, presence: true, if: :below_kind?
-  validates :first_name, :last_name, :phone, presence: true
-  validates :first_name_katakana, :last_name_katakana,
-            presence: true, if: :from_japan?
+  validates :name, presence: true
+  validates :name_katakana, presence: true, if: :from_japan?
+  validate :must_have_phone_or_wechat
 
   enum country: %i[china japan]
   enum currency: %i[jpy cny]
 
-  PERMITTED_ATTRIBUTES = %i[
-    first_name last_name first_name_katakana last_name_katakana country city
-    address phone post_code birthday occupation
-  ].freeze
+  PERMITTED_ATTRIBUTES = %i[name name_katakana phone].freeze
 
   private
 
@@ -55,5 +43,12 @@ class Sender < ApplicationRecord
 
   def below_kind?
     transfer.kind == Transfer.kinds.keys.first
+  end
+
+  def must_have_phone_or_wechat
+    if phone.blank? && wechat_id.blank?
+      errors.add(:phone, I18n.t(".errors.messages.sender.phone_or_wechat_require"))
+      errors.add(:wechat_id, I18n.t(".errors.messages.sender.phone_or_wechat_require"))
+    end
   end
 end

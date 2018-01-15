@@ -10,7 +10,6 @@
 #  currency       :integer
 #  email          :string
 #  full_name      :string
-#  ibank          :string
 #  id             :integer          not null, primary key
 #  kind           :string
 #  updated_at     :datetime         not null
@@ -27,7 +26,7 @@ class Recipient < ApplicationRecord
   has_many :transfers, dependent: :nullify
 
   validates :account_number, :bank_name, :branch_name, :email, :full_name,
-            :ibank, :currency, presence: true
+            :currency, presence: true
 
   validates :account_type, presence: true, if: :cny_to_jpy?
 

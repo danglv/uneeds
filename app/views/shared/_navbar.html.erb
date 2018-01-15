@@ -13,19 +13,6 @@
       <ul class="nav navbar-nav">
         <%= navbar_link_to t(".home"), root_path,
           :active_when => { :controller => "home" } %>
-        <!-- <li><a href="#contact">Contact</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li> -->
         <% if current_user %>
           <% if current_user.has_role?(:admin) %>
             <li>
@@ -42,6 +29,7 @@
             <li><%= link_to t(".sender_list"), senders_path %></li>
             <li><%= link_to t(".recipient_list"), recipients_path %></li>
             <li><%= link_to t(".transfer_list"), transfers_path %></li>
+            <li><%= link_to t(".help"), help_path %></li>
           <% end %>
         <% end %>
       </ul>

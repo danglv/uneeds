@@ -4,7 +4,7 @@
 #
 #  created_at     :datetime         not null
 #  id             :integer          not null, primary key
-#  kind           :integer          default(0)
+#  kind           :integer          default("below")
 #  payment_id     :integer
 #  recipient_data :json
 #  recipient_id   :integer
@@ -39,9 +39,7 @@ class Transfer < ApplicationRecord
   ATTRIBUTES = [
     :kind,
     payment_attributes: %i[exchange_id amount user_id],
-    sender_attributes: %i[first_name last_name birthday country city phone
-                          post_code occupation user_id first_name_katakana
-                          last_name_katakana address currency],
+    sender_attributes: %i[name phone name_katakana currency user_id],
     recipient_attributes: %i[full_name email account_number account_type kind
                              bank_name branch_name currency ibank user_id]
   ].freeze

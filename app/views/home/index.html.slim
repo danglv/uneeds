@@ -6,6 +6,9 @@
 .row
   .col-lg-12
     = render "uneeds_exchanges", exchanges: @uneeds_exchanges
+.row
+  .col-lg-12
+    = render "high_transfers", transfers: @transfers_above
 #modal_transfer_new.modal aria-hidden="true" role="dialog"
   .modal-header
     button.close data-dismiss="modal" type="button"

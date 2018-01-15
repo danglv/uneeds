@@ -67,6 +67,9 @@ ja:
       sender_list: *sender_list
       recipient_list: *recipient_list
       transfer_list: *transfer_list
+      help: 助けて
+    footer:
+      company_info: 遊八地株式会社
   home:
     index:
       home: *home
@@ -259,3 +262,10 @@ ja:
       index:
         below: "$ 10,000以下"
         above: "$ 10,000以上"
+  static_pages:
+    help:
+      title: 助けて
+  errors:
+    messages:
+      sender:
+        phone_or_wechat_require: "'電話番号'または'Wechat'のいずれかが必要です"
