@@ -8,6 +8,7 @@
         = sender.hidden_field :user_id, value: current_user.id
         = sender.input :name, label: t(".name")
         = sender.input :phone, label: t(".phone")
+        = sender.input :wechat_id, label: t(".wechat")
         = sender.hidden_field :user_id, value: current_user.id
   .col-lg-12.text-center
     = f.submit  t(".create"), class: 'btn btn-primary'

@@ -39,7 +39,7 @@ class Transfer < ApplicationRecord
   ATTRIBUTES = [
     :kind,
     payment_attributes: %i[exchange_id amount user_id],
-    sender_attributes: %i[name phone name_katakana currency user_id],
+    sender_attributes: %i[name phone name_katakana currency user_id wechat_id],
     recipient_attributes: %i[full_name email account_number account_type kind
                              bank_name branch_name currency ibank user_id]
   ].freeze
