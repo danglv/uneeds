@@ -1,5 +1,5 @@
 .jpy {
-  background-image: image-url("/assets/ensigns/jpy.png");
+  background: image-url("/assets/ensigns/jpy.png");
   width: 20px;
   height: 20px;
   background-size: 20px 20px;
@@ -7,7 +7,7 @@
 }
 
 .cny {
-  background-image: image-url("/assets/ensigns/cny.png");
+  background: image-url("/assets/ensigns/cny.png");
   width: 20px;
   height: 20px;
   background-size: 20px 20px;
