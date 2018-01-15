@@ -3,16 +3,16 @@ td
     = t(".full_name", name: sender.full_name)
   .row
     = t(".full_name_katakana", name: sender.full_name_katakana)
-  .row
+  / .row
     = t(".birthday", date: sender.birthday)
   .row
     div class = "#{sender.currency}"
 td
-  .row
-    = t(".detail_address", country: sender.country, city: sender.city, address: sender.address)
-  .row
-    = sender.post_code
+  / .row
+  /   = t(".detail_address", country: sender.country, city: sender.city, address: sender.address)
+  / .row
+  /   = sender.post_code
   .row
     = t(".phone", phone: sender.phone)
-  .row
+  / .row
     = t(".occupation", occupation: sender.occupation)

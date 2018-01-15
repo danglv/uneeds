@@ -11,18 +11,18 @@ class SenderDecorator < ApplicationDecorator
   #     end
   #   end
   def full_name
-    "#{first_name} #{last_name}"
+    "#{name}"
   end
 
   def full_name_katakana
-    "#{first_name_katakana} #{last_name_katakana}"
+    "#{name_katakana}"
   end
 
-  def country
-    I18n.t "dictionary.#{object.country}" if object.country
-  end
+  # def country
+  #   I18n.t "dictionary.#{object.country}" if object.country
+  # end
 
-  def birthday
-    format_datetime object.birthday, :date_format
-  end
+  # def birthday
+  #   format_datetime object.birthday, :date_format
+  # end
 end
