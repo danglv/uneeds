@@ -4,6 +4,16 @@ $(function() {
     to_exchange = $(".to_ensign").html();
     $(".from_ensign").html(to_exchange);
     $(".to_ensign").html(from_exchange);
+
+    var amount_active = $("span.input-group-addon.amount").find("span.active");
+    var amount_hide   = $("span.input-group-addon.amount").find("span.hide");
+    amount_active.addClass("hide").removeClass("active");
+    amount_hide.addClass("active").removeClass("hide");
+
+    var trans_amount_active = $("span.input-group-addon.transfer_amount").find("span.active");
+    var trans_amount_hide   = $("span.input-group-addon.transfer_amount").find("span.hide");
+    trans_amount_active.addClass("hide").removeClass("active");
+    trans_amount_hide.addClass("active").removeClass("hide");
   }
 
   function change_exchange() {
@@ -19,11 +29,11 @@ $(function() {
     guaranteed_rate = $("#payment_guaranteed_rate").text();
     fee = parseFloat($("#fee").text());
     amount = transfer_amount/guaranteed_rate + fee;
-    $("#amount").val(amount);
+    $("#transfer_payment_attributes_amount").val(amount);
   }
 
   function calculate_fee() {
-    amount = $("#amount").val();
+    amount = $("#transfer_payment_attributes_amount").val();
     if(amount.length == 0) return;
     exchange_id = $("#payment_exchange_id").val();
     $.ajax({
@@ -35,15 +45,15 @@ $(function() {
       success: function (result) {
         fee = result["fee"];
         $("#fee").text(fee);
-
         if (amount - fee <= 0) {
-          error_str = "<span class='help-block'>" + result["msg"] + "</span>"
+          error_str = "<span class='help-block error_span'>" + result["msg"] + "</span>"
           $(".transfer_payment_amount").addClass("has-error");
-          $(".transfer_payment_amount").find("span").remove();
+
+          $(".transfer_payment_amount").find("span.error_span").remove();
           $(".transfer_payment_amount").append(error_str);
         } else {
           $(".transfer_payment_amount").removeClass("has-error");
-          $(".transfer_payment_amount").find("span").remove();
+          $(".transfer_payment_amount").find("span.error_span").remove();
           real_amount = amount - fee;
           guaranteed_rate = $("#payment_guaranteed_rate").text();
           transfer_amount = real_amount * guaranteed_rate;
@@ -76,7 +86,7 @@ $(function() {
     change_input_currency();
   });
 
-  $("#amount").on("change", function(){
+  $("#transfer_payment_attributes_amount").on("change", function(){
     calculate_fee();
   });
 

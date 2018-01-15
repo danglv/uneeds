@@ -60,3 +60,8 @@
 .hide {
   display: none !important;
 }
+
+.input-prepend .add-on,
+.input-append input {
+  float: left;
+}

@@ -4,6 +4,19 @@ SimpleForm.setup do |config|
   config.button_class = 'btn btn-default'
   config.boolean_label_class = nil
 
+  # ---snip---
+  config.wrappers :vertical_input_group, tag: 'div', class: 'form-group' do |b|
+      b.use :html5
+      b.use :placeholder
+      b.use :label, class: 'form-control-label'
+
+      b.wrapper :input_group_div, tag: 'div', class:'input-group' do |append|
+        append.use :input, class: 'form-control'
+      end
+      b.use :hint,  wrap_with: { tag: 'small', class: 'text-muted form-text' }
+  end
+# ---snip---
+
   config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder

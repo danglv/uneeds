@@ -7,8 +7,17 @@
         = I18n.t "dictionary.failure.get_fee"
       = payment.hidden_field :exchange_id, value: support.exchange_id,
         id: "payment_exchange_id"
-      = payment.input :amount, class: "form-control string required",
+      /   = payment.input :amount, class: "form-control string required",
         input_html: {id: "amount"}, label: t(".amount")
+
+      = payment.input :amount, class: "form-control string required", wrapper: :vertical_input_group,
+        input_html: {id: "amount"}, label: t(".amount") do
+        = payment.input_field :amount, class: "form-control"
+        span.input-group-addon.amount
+          span.addon_cn.hide
+            | 元
+          span.addon_jpy.active
+            | 円
       .row
         .col-lg-6
           .transfer_fee
@@ -30,4 +39,11 @@
               = render "#{support.to_currency}_ensign", support: support
       .form-group.string.required
         lable for="transfer_amount" = t ".recipient_get"
-        input.form-control.string.transfer_amount#transfer_amount
+        .input-group
+          input.form-control.string.transfer_amount#transfer_amount
+          span.input-group-addon.transfer_amount
+            span.addon_cn.active
+              | 元
+            span.addon_jpy.hide
+              | 円
+
