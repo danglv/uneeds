@@ -77,6 +77,8 @@ ja:
       transfer_new_modal_title: "転送のタイプを選択する"
       below: "$ 10,000以下"
       above: "$ 10,000以上"
+    high_transfers:
+      above: "$ 10,000以上"
     bank_exchanges:
       today_exchange: 本日の為替
       bank_name: *bank_name
