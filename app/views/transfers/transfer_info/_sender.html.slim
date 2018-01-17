@@ -1,18 +1,21 @@
 td
-  .row
-    = t(".full_name", name: sender.full_name)
-  .row
-    = t(".full_name_katakana", name: sender.full_name_katakana)
-  / .row
-    = t(".birthday", date: sender.birthday)
-  .row
-    div class = "#{sender.currency}"
-td
-  / .row
-  /   = t(".detail_address", country: sender.country, city: sender.city, address: sender.address)
-  / .row
-  /   = sender.post_code
-  .row
-    = t(".phone", phone: sender.phone)
-  / .row
-    = t(".occupation", occupation: sender.occupation)
+  table style="width: 100%"
+    tbody
+      tr
+        td.label-column
+          = t(".full_name")
+        td.value-column
+          = sender.full_name
+      tr
+        td
+          = t(".full_name_katakana")
+        td
+          = sender.full_name_katakana
+      tr
+        td
+          = t(".phone")
+        td
+          = sender.phone
+      tr
+        td
+        td class = "#{sender.currency}"

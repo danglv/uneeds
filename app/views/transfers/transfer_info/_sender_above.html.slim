@@ -1,6 +1,13 @@
 td
-  .row
-    = t(".full_name", name: sender.full_name)
-td
-  .row
-    = t(".phone", phone: sender.phone)
+  table style="width: 100%"
+    tbody
+      tr
+        td.label-column
+          = t(".full_name")
+        td.value-column
+          = sender.full_name
+      tr
+        td
+          = t(".phone")
+        td
+          = sender.phone

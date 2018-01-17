@@ -5,8 +5,8 @@ ja:
     log_out: &log_out ログアウト
     register: &register 登録
     bank_name: &bank_name 銀行名
-    one_yen_to_rmb: &one_yen_to_rmb １円　　対　人民元
-    one_rmb_to_yen: &one_rmb_to_yen １人民元　　対　円
+    one_yen_to_rmb: &one_yen_to_rmb １円対人民元
+    one_rmb_to_yen: &one_rmb_to_yen １人民元対円
     exchange: &exchange 為替
     guaranteed_rate: &guaranteed_rate レート保証
     currency_from: &currency_from 通貨 から
@@ -51,6 +51,9 @@ ja:
       touza: &touza 当座
     failure:
       get_fee: &get_fee 手数料を得ることができなかった
+    amount: &amount 送金する金額
+    name: &name 名前
+    wechat: &wechat Wechat
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -78,6 +81,10 @@ ja:
       below: "$ 10,000以下"
       above: "$ 10,000以上"
     high_transfers:
+      high_transfer: 高転送
+      amount: *amount
+      purchase: 買取
+      user: 利用者
       above: "$ 10,000以上"
     bank_exchanges:
       today_exchange: 本日の為替
@@ -97,7 +104,7 @@ ja:
       title: 送金
     payment:
       transfer_info: 送金情報
-      amount: 送金する金額
+      amount: *amount
       guaranteed_rate: "レート保証:  "
       fee: "手数料:  "
       amount_will_transfer: "両替額:  "
@@ -105,8 +112,11 @@ ja:
     sender:
       sender_info: *sender_info
       address: *address
+      name: *name
+      wechat: *wechat
       first_name: *first_name
       last_name: *last_name
+      name_katakana: 名前(カナ)
       first_name_katakana: *first_name_katakana
       last_name_katakana: *last_name_katakana
       birthday: *birthday
@@ -128,6 +138,10 @@ ja:
     form:
       create: 作成する
     form_above:
+      sender_info: *sender_info
+      name: *name
+      phone: *phone
+      wechat: *wechat
       create: 作成する
     index:
       title: *transfer_list
@@ -142,27 +156,32 @@ ja:
       recipient: "受取人: %{full_name}"
     transfer_above:
       sender: "送金人: %{full_name}"
+      sender_info: *sender_info
     transfer_info:
       payment:
-        amount: "送金する金額: %{amount} %{currency}"
-        guaranteed_rate: "レート保証: %{guaranteed_rate}"
-        fee: "手数料: %{fee} %{currency}"
-        transfer_amount: "受取する金額: %{transfer_amount} %{currency}"
+        amount_label: *amount
+        amount: "%{amount} %{currency}"
+        fee_label: 手数料
+        guaranteed_rate_label: *guaranteed_rate
+        guaranteed_rate: "%{guaranteed_rate}"
+        fee: "%{fee} %{currency}"
+        transfer_amount_label: 受取する金額
+        transfer_amount: "%{transfer_amount} %{currency}"
       sender:
-        full_name: "フルネーム: %{name}"
-        full_name_katakana: "フルネーム(カナ): %{name}"
-        birthday: "誕生日: %{date}"
+        full_name: *full_name
+        full_name_katakana: *full_name_katakana
+        birthday: *birthday
         detail_address: "住所: %{address}、 %{city}、 %{country}"
-        phone: "電話: %{phone}"
+        phone: *phone
         occupation: "職業: %{occupation}"
       sender_above:
-        full_name: "フルネーム: %{name}"
-        phone: "電話: %{phone}"
+        full_name: *full_name
+        phone: *phone
       recipient:
-        full_name: "フルネーム: %{name}"
-        email: "メールアドレス: %{email}"
+        full_name: *full_name
+        email: *email
         bank: "%{bank_name} 銀行、 %{branch_name} 支店 [%{ibank}]"
-        account_number: "口座番号: %{account_number}"
+        account_number: "口座番号"
   senders:
     index:
       title: 送金人一覧
