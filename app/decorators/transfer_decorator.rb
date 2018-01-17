@@ -1,6 +1,7 @@
 class TransferDecorator < ApplicationDecorator
   decorates_association :payment
   decorates_association :sender
+  decorates_association :recipient
   delegate_all
   delegate :full_name, to: :sender, prefix: true
   delegate :decorated_currency, to: :payment

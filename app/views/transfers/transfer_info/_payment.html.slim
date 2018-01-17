@@ -1,7 +1,24 @@
 td
-  .row = t(".amount", amount: payment.amount, currency: payment.decorated_currency)
-  .row = t(".fee", fee: payment.fee, currency: payment.decorated_currency)
-  .row = t(".transfer_amount", transfer_amount: payment.transfer_amount,
-    currency: payment.decorated_currency)
-td
-  .row = t(".guaranteed_rate", guaranteed_rate: payment.guaranteed_rate)
+  table style="width: 100%"
+    tbody
+      tr
+        td.label-column
+          = t(".amount_label")
+        td.value-column
+          = t(".amount", amount: payment.amount, currency: payment.decorated_currency)
+      tr
+        td
+          = t(".fee_label")
+        td
+          = t(".fee", fee: payment.fee, currency: payment.decorated_currency)
+      tr
+        td
+          = t(".guaranteed_rate_label")
+        td
+          = t(".guaranteed_rate", guaranteed_rate: payment.guaranteed_rate)
+      tr
+        td
+          = t(".transfer_amount_label")
+        td
+          = t(".transfer_amount", transfer_amount: payment.transfer_amount,
+        currency: payment.decorated_currency)

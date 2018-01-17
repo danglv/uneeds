@@ -56,3 +56,13 @@
   margin: auto;
   background-color: white;
 }
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.label-column {
+  width: 45%;
+}
+.value-column {
+  width: 55%;
+}

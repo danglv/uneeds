@@ -3,30 +3,19 @@
     h4 = t(".high_transfer")
   .panel-body
     .row
-      .col-lg-6
+      .col-lg-12
         table.table.table-bordered.table-hover.table-index.table-striped width="100%"
           thead
             tr
-              th
               th = t(".amount")
               th = t(".purchase")
               th = t(".user")
           tbody
             - transfers.each do |transfer|
               tr
-                td
                 td = transfer.payment.try(:amount)
                 td = transfer.payment.try(:guaranteed_rate)
                 td = transfer.user.email
-      .col-lg-6
-        table.table.table-bordered.table-hover.table-index.table-striped width="100%"
-          thead
-            tr
-              th
-              th = t(".amount")
-              th = t(".purchase")
-              th = t(".user")
-          tbody
     .row
       = link_to t(".above"), new_transfer_path(kind: "above"), class: "btn btn-success form-control center-block"
 
