@@ -3,20 +3,10 @@ tr
     = sender.full_name
   td
     = sender.full_name_katakana
-  / td
-  /   = sender.country
-  / td
-  /   = sender.city
-  / td
-  /   = sender.address
-  / td
-  /   = sender.post_code
-  / td
-  /   = sender.birthday
   td
     = sender.phone
-  / td
-    = sender.occupation
+  td
+    = sender.wechat_id
   td.text-center
     .btn-group.navbar-btn
       = link_to t(".edit"), edit_sender_path(sender), class: "btn btn-info"
