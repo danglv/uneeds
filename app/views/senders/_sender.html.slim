@@ -1,12 +1,15 @@
 tr
   td
-    = sender.full_name
-  td
-    = sender.full_name_katakana
+    = sender.name
   td
     = sender.phone
   td
     = sender.wechat_id
-  td.text-center
+  td
+    = sender.decorated_currency
+  td
     .btn-group.navbar-btn
       = link_to t(".edit"), edit_sender_path(sender), class: "btn btn-info"
+    .btn-group.navbar-btn.ml-10
+      = link_to t(".delete"), sender_path(sender), method: :delete,
+        class: "btn btn-danger", data: {confirm: t(".delete_confirm")}

@@ -16,6 +16,15 @@ class RecipientsController < ApplicationController
     end
   end
 
+  def destroy
+    if recipient.destroy
+      flash[:notice] = t ".success"
+    else
+      flash[:alert] = t ".failure"
+    end
+    redirect_to recipients_path
+  end
+
   private
 
   def recipient

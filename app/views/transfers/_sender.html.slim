@@ -9,8 +9,8 @@
       .sender_info_name
         .sender_name
           = sender.input :name, label: t(".name")
-        #sender_katakana_name style="#{'display: none;' if support.from_cny?}"
-          = sender.input :name_katakana, label: t(".name_katakana")
+        / #sender_katakana_name style="#{'display: none;' if support.from_cny?}"
+        /   = sender.input :name_katakana, label: t(".name_katakana")
       = sender.input :phone, label: t(".phone")
       = sender.input :wechat_id, label: t(".wechat")
       = sender.hidden_field :currency, value: support.from_currency,

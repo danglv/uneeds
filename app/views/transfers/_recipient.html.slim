@@ -6,12 +6,12 @@
   .panel-body#recipient_info.collapse
     = f.simple_fields_for :recipient do |recipient|
       = recipient.hidden_field :user_id, value: current_user.id
-      = recipient.input :full_name, label: t(".full_name")
       = recipient.input :email, label: t(".email")
-      = recipient.input :account_number, label: t(".account_number")
-      = recipient.input :account_type, collection: account_type_options,
-        label: t(".account_type")
       = recipient.input :bank_name, label: t(".bank_name")
       = recipient.input :branch_name, label: t(".branch_name")
+      = recipient.input :account_type, collection: account_type_options,
+        label: t(".account_type")
+      = recipient.input :account_number, label: t(".account_number")
+      = recipient.input :full_name, label: t(".recipent_name")
       = recipient.hidden_field :currency, value: support.to_currency,
         id: "recipient_currency"

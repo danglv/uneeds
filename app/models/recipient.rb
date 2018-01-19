@@ -25,7 +25,7 @@ class Recipient < ApplicationRecord
   belongs_to :user
   has_many :transfers, dependent: :nullify
 
-  validates :account_number, :bank_name, :branch_name, :email, :full_name,
+  validates :account_number, :bank_name, :branch_name, :full_name,
             :currency, presence: true
 
   validates :account_type, presence: true, if: :cny_to_jpy?
@@ -34,8 +34,7 @@ class Recipient < ApplicationRecord
   enum currency: %i[jpy cny]
 
   PERMITTED_ATTRIBUTES = %i[
-    full_name email account_number account_type bank_name branch_name currency
-    ibank
+    full_name email account_number account_type bank_name branch_name
   ].freeze
 
   private
