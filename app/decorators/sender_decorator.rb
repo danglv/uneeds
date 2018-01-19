@@ -18,6 +18,10 @@ class SenderDecorator < ApplicationDecorator
     "#{name_katakana}"
   end
 
+  def decorated_currency
+    I18n.t "dictionary.currencies.#{object.currency}" if object.currency
+  end
+
   # def country
   #   I18n.t "dictionary.#{object.country}" if object.country
   # end

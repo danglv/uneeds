@@ -8,10 +8,10 @@
             table.table.table-striped
               thead
                 tr
-                  th = t ".full_name"
-                  th = t ".full_name_katakana"
+                  th = t ".name"
                   th = t ".phone"
                   th = t ".wechat_id"
+                  th = t ".currency"
 
               tbody
                 = render partial: "sender", collection: @senders

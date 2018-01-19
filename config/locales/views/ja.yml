@@ -5,8 +5,8 @@ ja:
     log_out: &log_out ログアウト
     register: &register 登録
     bank_name: &bank_name 銀行名
-    one_yen_to_rmb: &one_yen_to_rmb １円対人民元
-    one_rmb_to_yen: &one_rmb_to_yen １人民元対円
+    one_yen_to_rmb: &one_yen_to_rmb １円対元
+    one_rmb_to_yen: &one_rmb_to_yen １元対円
     exchange: &exchange 為替
     guaranteed_rate: &guaranteed_rate レート保証
     currency_from: &currency_from 通貨 から
@@ -30,11 +30,11 @@ ja:
     phone: &phone 電話番号
     post_code: &post_code 郵便番号
     occupation: &occupation 職業
-    sender_list: &sender_list 送金人一覧
+    sender_list: &sender_list 送金人の一覧
     sender_info: &sender_info 送金人情報
-    recipient_list: &recipient_list 受取人一覧
+    recipient_list: &recipient_list 受取人の一覧
     recipient_info: &recipient_info 受取人情報
-    transfer_list: &transfer_list 送金一覧
+    transfer_list: &transfer_list 送金履歴
     payment_info: &payment_info 支払情報
     email: &email メールアドレス
     account_number: &account_number 口座番号
@@ -44,7 +44,7 @@ ja:
     ibank: &ibank IBANK
     currencies:
       jpy: &jpy 円
-      cny: &cny 人民元
+      cny: &cny 元
     account_types:
       futsuu: &futsuu 普通
       chochiku: &chochiku 貯蓄
@@ -54,6 +54,8 @@ ja:
     amount: &amount 送金する金額
     name: &name 名前
     wechat: &wechat Wechat
+    delete: &delete 削除
+    recipent_name: &recipent_name 受取人名
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -70,7 +72,7 @@ ja:
       sender_list: *sender_list
       recipient_list: *recipient_list
       transfer_list: *transfer_list
-      help: 助けて
+      help: ヘルプ
     footer:
       company_info: 遊八地株式会社
   home:
@@ -81,10 +83,11 @@ ja:
       below: "$ 10,000以下"
       above: "$ 10,000以上"
     high_transfers:
-      high_transfer: 高転送
+      high_transfer: 買取情報（１万ドル以上　受付）
       amount: *amount
       purchase: 買取
-      user: 利用者
+      rate: 買取為替
+      user: ユーザー
       above: "$ 10,000以上"
     bank_exchanges:
       today_exchange: 本日の為替
@@ -104,6 +107,10 @@ ja:
       title: 送金
     payment:
       transfer_info: 送金情報
+      yen_to_rmb: 円から元
+      rmb_to_yen: 元から円
+      jpy: *jpy
+      cny: *cny
       amount: *amount
       guaranteed_rate: "レート保証:  "
       fee: "手数料:  "
@@ -128,6 +135,7 @@ ja:
     recipient:
       recipient_info: *recipient_info
       full_name: *full_name
+      recipent_name: *recipent_name
       email: *email
       account_number: *account_number
       account_type: *account_type
@@ -187,6 +195,8 @@ ja:
       title: 送金人一覧
       full_name: *full_name
       full_name_katakana: *full_name_katakana
+      name: *name
+      currency: *currency
       country: *country
       city: *city
       address: *address
@@ -197,6 +207,8 @@ ja:
       action: *action
     sender:
       edit: *edit
+      delete: *delete
+      delete_confirm: この送金人情報を削除します。よろしいでしょうか？
     edit:
       title: 送金人情報編集
       back: *back
@@ -206,6 +218,8 @@ ja:
       first_name_katakana: *first_name_katakana
       last_name: *last_name
       last_name_katakana: *last_name_katakana
+      name: *name
+      currency: *currency
       country: *country
       choose_country: 国を選択してください
       city: *city
@@ -219,6 +233,7 @@ ja:
     index:
       title: 受取人一覧
       full_name: *full_name
+      recipent_name: *recipent_name
       account_number: *account_number
       account_type: *account_type
       bank_name: *bank_name
@@ -229,12 +244,15 @@ ja:
       action: *action
     recipient:
       edit: *edit
+      delete: *delete
+      delete_confirm: この受取人情報を削除します。よろしいでしょうか？
     edit:
       title: 受取人情報編集
       back: *back
     form:
       recipient_info: *recipient_info
       full_name: *full_name
+      recipent_name: *recipent_name
       account_number: *account_number
       account_type: *account_type
       choose_account_type: 口座種別を選択してください
@@ -285,7 +303,7 @@ ja:
         above: "$ 10,000以上"
   static_pages:
     help:
-      title: 助けて
+      title: ヘルプ
   errors:
     messages:
       sender:

@@ -1,6 +1,6 @@
 - provide :title, t(".home")
 .mb-10
-  = link_to t(".send_money"), new_transfer_path, class: "btn btn-success", remote: true, data: {toggle: "modal", target: "#modal_transfer_new"}
+  = link_to t(".send_money"), new_transfer_path, class: "btn btn-success"
 .row
   .col-lg-12
     = render "bank_exchanges", exchanges: @bank_exchanges

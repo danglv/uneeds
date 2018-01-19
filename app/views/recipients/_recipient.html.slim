@@ -1,18 +1,21 @@
 tr
   td
-    = recipient.full_name
-  td
     = recipient.email
-  td
-    = recipient.account_number
-  td
-    = recipient.account_type
   td
     = recipient.bank_name
   td
     = recipient.branch_name
   td
+    = recipient.account_type
+  td
+    = recipient.account_number
+  td
+    = recipient.full_name
+  td
     = recipient.decorated_currency
   td.text-center
     .btn-group.navbar-btn
       = link_to t(".edit"), edit_recipient_path(recipient), class: "btn btn-info"
+    .btn-group.navbar-btn.ml-10
+      = link_to t(".delete"), recipient_path(recipient), method: :delete,
+        class: "btn btn-danger", data: {confirm: t(".delete_confirm")}

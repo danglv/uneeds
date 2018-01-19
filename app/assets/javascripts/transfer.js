@@ -4,23 +4,27 @@ $(function() {
     to_exchange = $(".to_ensign").html();
     $(".from_ensign").html(to_exchange);
     $(".to_ensign").html(from_exchange);
+  }
 
-    var amount_active = $("span.input-group-addon.amount").find("span.active");
-    var amount_hide   = $("span.input-group-addon.amount").find("span.hide");
-    amount_active.addClass("hide").removeClass("active");
-    amount_hide.addClass("active").removeClass("hide");
+  function swap_currency_unit() {
+    from_currency = $(".from_currency").text();
+    to_currency = $(".to_currency").text();
+    $(".from_currency").text(to_currency);
+    $(".to_currency").text(from_currency);
+  }
 
-    var trans_amount_active = $("span.input-group-addon.transfer_amount").find("span.active");
-    var trans_amount_hide   = $("span.input-group-addon.transfer_amount").find("span.hide");
-    trans_amount_active.addClass("hide").removeClass("active");
-    trans_amount_hide.addClass("active").removeClass("hide");
+  function change_payment_title() {
+    active_title = $("#payment_title .active");
+    hidden_title = $("#payment_title .hidden");
+    active_title.removeClass("active").addClass("hidden");
+    hidden_title.removeClass("hidden").addClass("active");
   }
 
   function change_exchange() {
     exchange_id = $(".from_ensign .ensign").data("exchange-id");
     rate = $(".from_ensign .ensign").data("guaranteed-rate");
     $("#payment_exchange_id").val(exchange_id);
-    $("#payment_guaranteed_rate").text(rate);
+    $("#payment_guaranteed_rate strong").text(rate);
   }
 
   function change_amount() {
@@ -80,9 +84,10 @@ $(function() {
 
   $(".fa-exchange").on("click", function(){
     swap_ensign();
+    swap_currency_unit();
+    change_payment_title();
     change_exchange();
     calculate_fee();
-    $("#sender_katakana_name").toggle();
     change_input_currency();
   });
 

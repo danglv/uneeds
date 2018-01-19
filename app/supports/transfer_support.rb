@@ -31,6 +31,10 @@ class TransferSupport
     exchange_id == from_cny_exchange.id
   end
 
+  def from_jpy?
+    exchange_id == from_jpy_exchange.id
+  end
+
   def from_jpy_data
     {
       exchange_id: from_jpy_exchange.id,

@@ -22,13 +22,12 @@ class Sender < ApplicationRecord
   belongs_to :user
   has_one :transfer, dependent: :nullify
   validates :name, presence: true
-  validates :name_katakana, presence: true, if: :from_japan?
   validate :must_have_phone_or_wechat
 
   enum country: %i[china japan]
   enum currency: %i[jpy cny]
 
-  PERMITTED_ATTRIBUTES = %i[name name_katakana phone].freeze
+  PERMITTED_ATTRIBUTES = %i[name phone wechat_id].freeze
 
   private
 

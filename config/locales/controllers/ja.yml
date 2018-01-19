@@ -6,9 +6,15 @@ ja:
   senders:
     update:
       success: 送金人情報の更新が成功した
+    destroy:
+      success: 削除しました
+      failure: 削除できませんでした
   recipients:
     update:
       success: 受取人情報の更新が成功した
+    destroy:
+      success: 削除しました
+      failure: 削除できませんでした
   transfers:
     create:
       success: 送金が成功した

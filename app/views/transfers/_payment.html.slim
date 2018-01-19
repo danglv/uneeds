@@ -1,7 +1,18 @@
 .panel.panel-default
-  .panel-heading
-    = t(".transfer_info")
+  .panel-heading#payment_title
+    .from-yen class="#{support.from_jpy? ? 'active' : 'hidden'}"
+      = t(".yen_to_rmb")
+    .from-rmb class="#{support.from_jpy? ? 'hidden' : 'active'}"
+      = t(".rmb_to_yen")
   .panel-body
+    .row
+      .col-lg-6
+        .exchange_currency
+          span.from_ensign
+            = render "#{support.from_currency}_ensign", support: support
+          i.fa.fa-exchange.btn.btn-success
+          span.to_ensign
+            = render "#{support.to_currency}_ensign", support: support
     = f.simple_fields_for :payment do |payment|
       span#failure_to_get_fee style="display: none;"
         = I18n.t "dictionary.failure.get_fee"
@@ -14,10 +25,8 @@
         input_html: {id: "amount"}, label: t(".amount") do
         = payment.input_field :amount, class: "form-control"
         span.input-group-addon.amount
-          span.addon_cn.hide
-            | 元
-          span.addon_jpy.active
-            | 円
+          span.from_currency
+            = t(".#{support.from_currency}")
       .row
         .col-lg-6
           .transfer_fee
@@ -29,21 +38,13 @@
           .exchange
             = t ".guaranteed_rate"
             span#payment_guaranteed_rate
-              = support.guaranteed_rate
-        .col-lg-6
-          .exchange_currency
-            span.from_ensign
-              = render "#{support.from_currency}_ensign", support: support
-            i.fa.fa-exchange.btn.btn-success
-            span.to_ensign
-              = render "#{support.to_currency}_ensign", support: support
+              strong
+                = support.guaranteed_rate
       .form-group.string.required
         lable for="transfer_amount" = t ".recipient_get"
         .input-group
           input.form-control.string.transfer_amount#transfer_amount
           span.input-group-addon.transfer_amount
-            span.addon_cn.active
-              | 元
-            span.addon_jpy.hide
-              | 円
+            span.to_currency
+              = t(".#{support.to_currency}")
 

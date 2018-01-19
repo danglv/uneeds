@@ -2,13 +2,19 @@ zh-CN:
   admin:
     exchanges:
       update:
-        success: 更新成功
+        success: 更新成功した
   senders:
     update:
       success: 送金人情報の更新が成功した
+    destroy:
+      success: 削除しました
+      failure: 削除できませんでした
   recipients:
     update:
       success: 受取人情報の更新が成功した
+    destroy:
+      success: 削除しました
+      failure: 削除できませんでした
   transfers:
     create:
       success: 送金が成功した

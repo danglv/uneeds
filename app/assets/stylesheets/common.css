@@ -65,3 +65,6 @@
 .input-append input {
   float: left;
 }
+.ml-10 {
+  margin-left: 10px;
+}
