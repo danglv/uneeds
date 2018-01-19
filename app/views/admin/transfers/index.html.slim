@@ -1,15 +1,4 @@
-- provide(:title, "Transfers")
-ul.nav.nav-tabs
-  li.active
-    a data-toggle="tab" href="#below"
-      = t(".below")
-  li
-    a data-toggle="tab" href="#above"
-      = t(".above")
-.tab-content
-  #below.tab-pane.fade.in.active
-    = render partial: "transfers/transfer", collection: @transfers_below
-  #above.tab-pane.fade
-    = render partial: "transfers/transfer_above", collection: @transfers_above
+- provide :title, t(".title")
+= render partial: "transfers/transfer", collection: @transfers
 
 

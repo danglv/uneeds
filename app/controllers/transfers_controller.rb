@@ -1,8 +1,7 @@
 # TransfersController
 class TransfersController < ApplicationController
   def index
-    @transfers_below = current_user.transfers.below.order(created_at: :desc).decorate
-    @transfers_above = current_user.transfers.above.order(created_at: :desc).decorate
+    @transfers = current_user.transfers.order(created_at: :desc).decorate
   end
 
   def new

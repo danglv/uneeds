@@ -10,8 +10,9 @@
                 tr
                   th = t ".name"
                   th = t ".phone"
-                  th = t ".wechat_id"
+                  th = t ".wechat"
                   th = t ".currency"
+                  th.text-center = t ".action"
 
               tbody
                 = render partial: "sender", collection: @senders

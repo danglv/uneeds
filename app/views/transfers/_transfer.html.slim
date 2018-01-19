@@ -4,12 +4,12 @@
       .panel-heading
         .row
           .col-lg-3
-            = transfer.created_time
+            = transfer.decorated_created_time
           .col-lg-3
             = t(".amount", amount: transfer.payment_amount,
-              currency: transfer.decorated_currency)
+              currency: transfer.sender_decorated_currency)
           .col-lg-3
-            = t(".sender", full_name: transfer.sender_full_name)
+            = t(".sender", full_name: transfer.sender_name)
           .col-lg-3
             = t(".recipient", full_name: transfer.recipient_full_name)
       .panel-body
@@ -21,9 +21,10 @@
                 payment: transfer.payment
             tr
               td.text-left = t ".sender_info"
-              = render "transfers/transfer_info/sender", sender: transfer.sender
+              = render "transfers/transfer_info/sender",
+                sender: transfer.sender_object
             tr
               td.text-left = t ".recipient_info"
               = render "transfers/transfer_info/recipient",
-                recipient: transfer.recipient
+                recipient: transfer.recipient_object
 

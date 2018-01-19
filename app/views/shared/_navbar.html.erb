@@ -12,25 +12,22 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <%= navbar_link_to t(".home"), root_path,
-          :active_when => { :controller => "home" } %>
-        <% if current_user %>
-          <% if current_user.has_role?(:admin) %>
-            <li>
-              <%= navbar_link_to t(".exchanges"),
-                                  admin_exchanges_path,
-                                  :active_when => { :controller => "admin/exchanges" } %>
-            </li>
-            <li>
-              <%= navbar_link_to t(".transfers"),
-                                  admin_transfers_path,
-                                  :active_when => { :controller => "admin/transfers" }%>
-            </li>
-          <% else %>
-            <li><%= link_to t(".sender_list"), senders_path %></li>
-            <li><%= link_to t(".recipient_list"), recipients_path %></li>
-            <li><%= link_to t(".transfer_list"), transfers_path %></li>
-            <li><%= link_to t(".help"), help_path %></li>
-          <% end %>
+          active_when: { controller: "home" } %>
+        <% case %>
+        <% when admin? %>
+          <%= navbar_link_to t(".exchanges_management"), admin_exchanges_path,
+            active_when: { controller: "admin/exchanges" } %>
+          <%= navbar_link_to t(".transfers_management"), admin_transfers_path,
+            active_when: { controller: "admin/transfers", action: "index" }%>
+        <% when normal_user? %>
+          <%= navbar_link_to t(".sender_list"), senders_path,
+            active_when: {controller: "senders", action: "index"} %>
+          <%= navbar_link_to t(".recipient_list"), recipients_path,
+            active_when: {controller: "recipients", action: "index"} %>
+          <%= navbar_link_to t(".transfer_list"), transfers_path,
+            active_when: {controller: "transfers", action: "index"} %>
+          <%= navbar_link_to t(".help"), help_path,
+            active_when: {controller: "static_pages", action: "help"} %>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">

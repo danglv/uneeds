@@ -3,14 +3,24 @@ td
     tbody
       tr
         td.label-column
-          = t(".full_name")
+          = t(".email")
         td.value-column
-          = recipient.full_name
+          = recipient.email
       tr
         td
-          = t(".email")
+          = t(".bank_name")
         td
-          = recipient.email
+          = recipient.bank_name
+      tr
+        td
+          = t(".branch_name")
+        td
+          = recipient.branch_name
+      tr
+        td
+          = t(".account_type")
+        td
+          = recipient.decorated_account_type
       tr
         td
           = t(".account_number")
@@ -18,5 +28,6 @@ td
           = recipient.account_number
       tr
         td
-          = recipient.account_type
-        td class = "#{recipient.currency}"
+          = t(".recipent_name")
+        td
+          = recipient.full_name

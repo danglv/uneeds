@@ -3,14 +3,9 @@ td
     tbody
       tr
         td.label-column
-          = t(".full_name")
+          = t(".name")
         td.value-column
-          = sender.full_name
-      tr
-        td
-          = t(".full_name_katakana")
-        td
-          = sender.full_name_katakana
+          = sender.name
       tr
         td
           = t(".phone")
@@ -18,4 +13,6 @@ td
           = sender.phone
       tr
         td
-        td class = "#{sender.currency}"
+          = t(".wechat")
+        td
+          = sender.wechat_id
