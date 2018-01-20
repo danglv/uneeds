@@ -9,7 +9,7 @@ class RecipientDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-  def account_type
+  def decorated_account_type
     I18n.t "dictionary.account_types.#{object.account_type}" if
       object.account_type
   end

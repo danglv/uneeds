@@ -56,6 +56,12 @@ ja:
     wechat: &wechat Wechat
     delete: &delete 削除
     recipent_name: &recipent_name 受取人名
+    fee: &fee 手数料
+    received_amount: &received_amount 受取する金額
+    transfers_management: &transfers_management 送金管理
+    exchanges_management: &exchanges_management 為替管理
+    yen_to_rmb: &yen_to_rmb 円から元
+    rmb_to_yen: &rmb_to_yen 元から円
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -67,8 +73,8 @@ ja:
       log_out: *log_out
       register: *register
       settings: 設定
-      exchanges: 為替管理
-      transfers: 送金管理
+      exchanges_management: *exchanges_management
+      transfers_management: *transfers_management
       sender_list: *sender_list
       recipient_list: *recipient_list
       transfer_list: *transfer_list
@@ -107,8 +113,8 @@ ja:
       title: 送金
     payment:
       transfer_info: 送金情報
-      yen_to_rmb: 円から元
-      rmb_to_yen: 元から円
+      yen_to_rmb: *yen_to_rmb
+      rmb_to_yen: *rmb_to_yen
       jpy: *jpy
       cny: *cny
       amount: *amount
@@ -169,18 +175,20 @@ ja:
       payment:
         amount_label: *amount
         amount: "%{amount} %{currency}"
-        fee_label: 手数料
+        fee_label: *fee
         guaranteed_rate_label: *guaranteed_rate
         guaranteed_rate: "%{guaranteed_rate}"
         fee: "%{fee} %{currency}"
-        transfer_amount_label: 受取する金額
+        transfer_amount_label: *received_amount
         transfer_amount: "%{transfer_amount} %{currency}"
       sender:
         full_name: *full_name
         full_name_katakana: *full_name_katakana
         birthday: *birthday
         detail_address: "住所: %{address}、 %{city}、 %{country}"
+        name: *name
         phone: *phone
+        wechat: *wechat
         occupation: "職業: %{occupation}"
       sender_above:
         full_name: *full_name
@@ -188,14 +196,19 @@ ja:
       recipient:
         full_name: *full_name
         email: *email
+        bank_name: *bank_name
+        branch_name: *branch_name
+        account_type: *account_type
+        account_number: *account_number
+        recipent_name: *recipent_name
         bank: "%{bank_name} 銀行、 %{branch_name} 支店 [%{ibank}]"
-        account_number: "口座番号"
   senders:
     index:
-      title: 送金人一覧
+      title: *sender_list
       full_name: *full_name
       full_name_katakana: *full_name_katakana
       name: *name
+      wechat: *wechat
       currency: *currency
       country: *country
       city: *city
@@ -231,7 +244,7 @@ ja:
       update: *update
   recipients:
     index:
-      title: 受取人一覧
+      title: *recipient_list
       full_name: *full_name
       recipent_name: *recipent_name
       account_number: *account_number
@@ -266,7 +279,7 @@ ja:
   admin:
     exchanges:
       index:
-        title: 為替管理
+        title: *exchanges_management
       uneeds_exchanges:
         uneeds_exchange: 買取為替
         num_order: 順
@@ -289,16 +302,20 @@ ja:
         edit: *edit
       edit:
         title: 為替編集
+        back: *back
       form:
         exchange_info: 為替情報
         currency_from: *currency_from
         currency_to: *currency_to
+        jpycny: *yen_to_rmb
+        cnyjpy: *rmb_to_yen
         jp_name: 名(JP)
         cn_name: 名(CN)
         guaranteed_rate: *guaranteed_rate
         update: *update
     transfers:
       index:
+        title: *transfers_management
         below: "$ 10,000以下"
         above: "$ 10,000以上"
   static_pages:

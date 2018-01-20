@@ -1,10 +1,10 @@
 class TransferDecorator < ApplicationDecorator
   decorates_association :payment
-  decorates_association :sender
-  decorates_association :recipient
   delegate_all
-  delegate :full_name, to: :sender, prefix: true
-  delegate :decorated_currency, to: :payment
+
+  delegate :name, :decorated_currency, to: :sender_object, prefix: :sender
+  delegate :full_name, :decorated_currency, to: :recipient_object,
+    prefix: :recipient
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
@@ -14,7 +14,15 @@ class TransferDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-  def created_time
+  def decorated_created_time
     format_datetime created_at, :time_format
+  end
+
+  def sender_object
+    Sender.new(sender_data).decorate
+  end
+
+  def recipient_object
+    Recipient.new(recipient_data).decorate
   end
 end
