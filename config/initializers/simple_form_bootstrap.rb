@@ -5,15 +5,16 @@ SimpleForm.setup do |config|
   config.boolean_label_class = nil
 
   # ---snip---
-  config.wrappers :vertical_input_group, tag: 'div', class: 'form-group' do |b|
+  config.wrappers :vertical_input_group, tag: 'div', class: 'form-group', error_class: "has-error" do |b|
       b.use :html5
       b.use :placeholder
-      b.use :label, class: 'form-control-label'
+      b.use :label, class: 'control-label'
 
       b.wrapper :input_group_div, tag: 'div', class:'input-group' do |append|
         append.use :input, class: 'form-control'
       end
       b.use :hint,  wrap_with: { tag: 'small', class: 'text-muted form-text' }
+      b.use :error, wrap_with: { tag: :span, class: "help-block" }
   end
 # ---snip---
 

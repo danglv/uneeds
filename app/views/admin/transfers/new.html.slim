@@ -1,0 +1,5 @@
+- provide :title, t(".title")
+= simple_form_for [:admin, @transfer], html: {id: "admin_add_transfer"} do |f|
+  = render "form", f: f, support: @support
+  .col-lg-12.text-center
+    = f.submit  t(".submit"), class: 'btn btn-primary'

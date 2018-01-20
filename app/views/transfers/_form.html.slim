@@ -1,4 +1,4 @@
-= simple_form_for transfer do |f|
+= simple_form_for transfer, html: {id: "user_add_transfer"} do |f|
   = render "payment", f: f, support: support
   = render "sender", f: f, support: support
   = render "recipient", f: f, support: support

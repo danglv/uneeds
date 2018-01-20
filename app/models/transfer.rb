@@ -44,6 +44,16 @@ class Transfer < ApplicationRecord
                              bank_name branch_name currency ibank user_id]
   ].freeze
 
+  ADMIN_CREATE_ATTRIBUTES = [
+    :user_id,
+    payment_attributes: %i[amount fee guaranteed_rate transfer_amount],
+    sender_attributes: %i[name phone wechat_id currency],
+    recipient_attributes: %i[email bank_name branch_name account_type
+      account_number full_name currency]
+  ].freeze
+
+  validates :user_id, presence: true
+
   scope :below, -> {where "kind = ?", 0}
   scope :above, -> {where "kind = ?", 1}
 
