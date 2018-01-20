@@ -34,6 +34,7 @@ class Transfer < ApplicationRecord
     allow_nil: true
   delegate :currency, to: :sender, prefix: true, allow_nil: true
   delegate :currency, :full_name, to: :recipient, prefix: true, allow_nil: true
+  delegate :email, to: :user, prefix: true, allow_nil: true
 
   accepts_nested_attributes_for :sender, :recipient, :payment
   ATTRIBUTES = [
@@ -54,8 +55,11 @@ class Transfer < ApplicationRecord
 
   validates :user_id, presence: true
 
-  scope :below, -> {where "kind = ?", 0}
-  scope :above, -> {where "kind = ?", 1}
+  scope :by_currency, ->(currency) do
+    where("sender_data ->> 'currency' = ?", currency)
+  end
+
+  scope :include_payment_user, ->{includes [:user, :payment]}
 
   before_create :set_data
 

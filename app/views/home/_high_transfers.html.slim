@@ -3,19 +3,23 @@
     h4 = t(".high_transfer")
   .panel-body
     .row
-      .col-lg-12
+      .col-lg-6
         table.table.table-bordered.table-hover.table-index.table-striped width="100%"
           thead
             tr
+              th
+              th = t(".amount")
+              th = t(".rate")
+              th = t(".user")
+          tbody
+            = render partial: "transfer", collection: jpy_transfers
+      .col-lg-6
+        table.table.table-bordered.table-hover.table-index.table-striped width="100%"
+          thead
+            tr
+              th
               th = t(".amount")
               th = t(".purchase")
               th = t(".user")
           tbody
-            - transfers.each do |transfer|
-              tr
-                td = transfer.payment.try(:amount)
-                td = transfer.payment.try(:guaranteed_rate)
-                td = transfer.user.email
-    .row
-      = link_to t(".above"), new_transfer_path(kind: "above"), class: "btn btn-success form-control center-block"
-
+            = render partial: "transfer", collection: cny_transfers

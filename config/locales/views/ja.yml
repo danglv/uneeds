@@ -65,6 +65,9 @@ ja:
     create: &create 作成する
     add_high_transfer: &add_high_transfer 送金（１０００＄以上）の登録
     user: &user ユーザー
+    purchase:
+      jpy: &jpy 円買取
+      cny: &cny 元買取
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -94,7 +97,7 @@ ja:
       above: "$ 10,000以上"
     high_transfers:
       high_transfer: 買取情報（１万ドル以上　受付）
-      amount: *amount
+      amount: 総額
       purchase: 買取
       rate: 買取為替
       user: *user
@@ -113,6 +116,7 @@ ja:
       10_man_yen_receipt: 10万円　受取%{amount}元
       1_man_rmb_receipt: 1万元　受取%{amount}万円
   transfers:
+    high_amount: "%{amount}万%{currency}"
     new:
       title: 送金
     payment:
