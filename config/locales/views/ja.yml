@@ -62,6 +62,12 @@ ja:
     exchanges_management: &exchanges_management 為替管理
     yen_to_rmb: &yen_to_rmb 円から元
     rmb_to_yen: &rmb_to_yen 元から円
+    create: &create 作成する
+    add_high_transfer: &add_high_transfer 送金（１０００＄以上）の登録
+    user: &user ユーザー
+    purchase:
+      jpy: &jpy 円買取
+      cny: &cny 元買取
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -75,6 +81,7 @@ ja:
       settings: 設定
       exchanges_management: *exchanges_management
       transfers_management: *transfers_management
+      add_high_transfer: *add_high_transfer
       sender_list: *sender_list
       recipient_list: *recipient_list
       transfer_list: *transfer_list
@@ -90,10 +97,10 @@ ja:
       above: "$ 10,000以上"
     high_transfers:
       high_transfer: 買取情報（１万ドル以上　受付）
-      amount: *amount
+      amount: 総額
       purchase: 買取
       rate: 買取為替
-      user: ユーザー
+      user: *user
       above: "$ 10,000以上"
     bank_exchanges:
       today_exchange: 本日の為替
@@ -109,6 +116,7 @@ ja:
       10_man_yen_receipt: 10万円　受取%{amount}元
       1_man_rmb_receipt: 1万元　受取%{amount}万円
   transfers:
+    high_amount: "%{amount}万%{currency}"
     new:
       title: 送金
     payment:
@@ -121,7 +129,7 @@ ja:
       guaranteed_rate: "レート保証:  "
       fee: "手数料:  "
       amount_will_transfer: "両替額:  "
-      recipient_get: 受取する金額
+      recipient_get: *received_amount
     sender:
       sender_info: *sender_info
       address: *address
@@ -150,7 +158,7 @@ ja:
       currency: *currency
       ibank: *ibank
     form:
-      create: 作成する
+      create: *create
     form_above:
       sender_info: *sender_info
       name: *name
@@ -318,6 +326,37 @@ ja:
         title: *transfers_management
         below: "$ 10,000以下"
         above: "$ 10,000以上"
+      new:
+        title: *add_high_transfer
+        submit: *create
+      user:
+        title: ユーザー情報
+        user: *user
+        choose_user: ユーザーを選択してください
+      payment:
+        yen_to_rmb: *yen_to_rmb
+        rmb_to_yen: *rmb_to_yen
+        jpy: *jpy
+        cny: *cny
+        amount: *amount
+        guaranteed_rate: *guaranteed_rate
+        fee: *fee
+        amount_will_transfer: 両替額
+        recipient_get: *received_amount
+      sender:
+        sender_info: *sender_info
+        name: *name
+        phone: *phone
+        wechat: *wechat
+      recipient:
+        recipient_info: *recipient_info
+        email: *email
+        bank_name: *bank_name
+        branch_name: *branch_name
+        account_type: *account_type
+        account_number: *account_number
+        recipent_name: *recipent_name
+        currency: *currency
   static_pages:
     help:
       title: ヘルプ

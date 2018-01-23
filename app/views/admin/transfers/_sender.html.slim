@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    a.toggle-arrow.collapsed data= {toggle: "collapse", target: "#sender_info"} href = "javascript:void()"
+      = t ".sender_info"
+      b.caret
+  .panel-body#sender_info.collapse
+    = f.simple_fields_for :sender do |sender|
+      = sender.input :name, label: t(".name")
+      = sender.input :phone, label: t(".phone")
+      = sender.input :wechat_id, label: t(".wechat")
+      = sender.hidden_field :currency, value: support.from_currency,
+        id: "sender_currency"

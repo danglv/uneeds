@@ -25,4 +25,13 @@ class TransferDecorator < ApplicationDecorator
   def recipient_object
     Recipient.new(recipient_data).decorate
   end
+
+  def currency_purchase
+    I18n.t "dictionary.purchase.#{sender_object.currency}"
+  end
+
+  def high_amount
+    I18n.t "transfers.high_amount", amount: payment_amount.to_f / 10_000,
+      currency: sender_decorated_currency
+  end
 end

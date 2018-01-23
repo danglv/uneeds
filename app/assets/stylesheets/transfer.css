@@ -66,3 +66,7 @@
 .value-column {
   width: 55%;
 }
+
+#guaranteed_rate {
+  font-weight: bold;
+}

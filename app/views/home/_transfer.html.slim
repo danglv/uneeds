@@ -1,0 +1,7 @@
+tr
+  - if transfer_counter.zero?
+    td rowspan=Settings.max_high_transfers
+      = transfer.currency_purchase
+  td = transfer.high_amount
+  td = transfer.payment_guaranteed_rate
+  td = transfer.user_email

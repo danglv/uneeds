@@ -138,3 +138,7 @@ bh_unicode_properties.cache
 GitHub.sublime-settings
 
 # End of https://www.gitignore.io/api/osx,rails,sublimetext
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

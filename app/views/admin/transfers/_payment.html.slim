@@ -16,8 +16,6 @@
     = f.simple_fields_for :payment do |payment|
       span.hidden#failure_to_get_fee
         = I18n.t "dictionary.failure.get_fee"
-      = payment.hidden_field :exchange_id, value: support.exchange_id,
-        id: "exchange_id"
       = payment.input :amount, wrapper: :vertical_input_group,
         label: t(".amount") do
         = payment.input_field :amount, class: "form-control", id: "amount"
@@ -29,7 +27,7 @@
           = payment.input :fee, wrapper: :vertical_input_group,
             label: t(".fee") do
             = payment.input_field :fee, class: "form-control", id: "fee",
-              data: {url: fee_transfers_path}, disabled: true
+              data: {url: fee_admin_transfers_path}, disabled: true
             span.input-group-addon.fee
               span.from_unit
                 = t(".#{support.from_currency}")
@@ -38,19 +36,19 @@
           .form-group.string
             lable for="real_amount" = t ".amount_will_transfer"
             .input-group
-              input.form-control.string#real_amount disabled=true
+              input.form-control.string#real_amount value=support.real_amount disabled=true
               span.input-group-addon.real_amount
                 span.from_unit
                   = t(".#{support.from_currency}")
       .row
         .col-sm-6
-          = payment.input :guaranteed_rate, input_html: {id: "guaranteed_rate",
-            value: support.guaranteed_rate}, label: t(".guaranteed_rate"),
-            disabled: true
-      .form-group.string
-        lable for="received_amount" = t ".recipient_get"
-        .input-group
-          input.form-control.string.received_amount#received_amount
-          span.input-group-addon.received_amount
-            span.to_unit
-              = t(".#{support.to_currency}")
+          = payment.input :guaranteed_rate, input_html: {id: "guaranteed_rate"},
+            label: t(".guaranteed_rate"), required: true
+      = payment.input :transfer_amount, wrapper: :vertical_input_group,
+        label: t(".recipient_get") do
+        = payment.input_field :transfer_amount, class: "form-control",
+          id: "received_amount"
+        span.input-group-addon.amount
+          span.to_unit
+            = t(".#{support.to_currency}")
+

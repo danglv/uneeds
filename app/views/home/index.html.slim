@@ -10,7 +10,8 @@
     = render "uneeds_exchanges", exchanges: @uneeds_exchanges
 .row
   .col-lg-12
-    = render "high_transfers", transfers: @transfers_above
+    = render "high_transfers", jpy_transfers: @high_jpy_transfers,
+      cny_transfers: @high_cny_transfers
 #modal_transfer_new.modal aria-hidden="true" role="dialog"
   .modal-header
     button.close data-dismiss="modal" type="button"

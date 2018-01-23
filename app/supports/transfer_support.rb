@@ -6,13 +6,13 @@ class TransferSupport
   end
 
   def build_associations
-    transfer.build_sender
-    transfer.build_recipient
-    transfer.build_payment
+    transfer.build_sender(currency: :jpy)
+    transfer.build_recipient(currency: :cny)
+    transfer.build_payment(uneeds_exchange: from_jpy_exchange)
   end
 
   def exchange_id
-    transfer.payment_exchange_id || from_jpy_exchange.id
+    transfer.payment_exchange_id
   end
 
   def guaranteed_rate
@@ -20,19 +20,23 @@ class TransferSupport
   end
 
   def from_currency
-    transfer.sender_currency || :jpy
+    transfer.sender_currency
   end
 
   def to_currency
-    transfer.recipient_currency || :cny
+    transfer.recipient_currency
   end
 
   def from_cny?
-    exchange_id == from_cny_exchange.id
+    transfer.sender.cny?
   end
 
   def from_jpy?
-    exchange_id == from_jpy_exchange.id
+    transfer.sender.jpy?
+  end
+
+  def fee
+    payment.fee
   end
 
   def from_jpy_data
@@ -63,5 +67,9 @@ class TransferSupport
 
   def from_cny_exchange
     exchanges.detect(&:from_cny?)
+  end
+
+  def payment
+    transfer.payment
   end
 end

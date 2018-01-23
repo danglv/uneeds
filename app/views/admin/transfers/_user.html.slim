@@ -1,0 +1,6 @@
+.panel.panel-default
+  .panel-heading
+    = t(".title")
+  .panel-body
+    = f.input :user_id, collection: user_options, label: t(".user"),
+      prompt: t(".choose_user")

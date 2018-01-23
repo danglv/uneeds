@@ -15,7 +15,11 @@ Rails.application.routes.draw do
     resources :recipients
     namespace :admin do
       resources :exchanges
-      resources :transfers
+      resources :transfers do
+        collection do
+          post :fee
+        end
+      end
     end
   end
 end

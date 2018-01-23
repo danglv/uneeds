@@ -34,6 +34,7 @@ class Transfer < ApplicationRecord
     allow_nil: true
   delegate :currency, to: :sender, prefix: true, allow_nil: true
   delegate :currency, :full_name, to: :recipient, prefix: true, allow_nil: true
+  delegate :email, to: :user, prefix: true, allow_nil: true
 
   accepts_nested_attributes_for :sender, :recipient, :payment
   ATTRIBUTES = [
@@ -44,8 +45,21 @@ class Transfer < ApplicationRecord
                              bank_name branch_name currency ibank user_id]
   ].freeze
 
-  scope :below, -> {where "kind = ?", 0}
-  scope :above, -> {where "kind = ?", 1}
+  ADMIN_CREATE_ATTRIBUTES = [
+    :user_id,
+    payment_attributes: %i[amount fee guaranteed_rate transfer_amount],
+    sender_attributes: %i[name phone wechat_id currency],
+    recipient_attributes: %i[email bank_name branch_name account_type
+      account_number full_name currency]
+  ].freeze
+
+  validates :user_id, presence: true
+
+  scope :by_currency, ->(currency) do
+    where("sender_data ->> 'currency' = ?", currency)
+  end
+
+  scope :include_payment_user, ->{includes [:user, :payment]}
 
   before_create :set_data
 
