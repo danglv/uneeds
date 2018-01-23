@@ -1,7 +1,8 @@
 # transfer
 class Admin::TransfersController < Admin::BaseController
   def index
-    @transfers = Transfer.order(created_at: :desc).decorate
+    @transfers_below = Transfer.below.order(created_at: :desc).decorate
+    @transfers_above = Transfer.above.order(created_at: :desc).decorate
   end
 
   def new

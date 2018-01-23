@@ -3,11 +3,16 @@ td
     tbody
       tr
         td.label-column
-          = t(".full_name")
+          = t(".name")
         td.value-column
-          = sender.full_name
+          = sender.name
       tr
         td
           = t(".phone")
         td
           = sender.phone
+      tr
+        td
+          = t(".wechat")
+        td
+          = sender.wechat_id

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
           post :fee
         end
       end
+      resources :high_transfers, only: %i[new create]
     end
   end
 end

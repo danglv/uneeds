@@ -4,13 +4,13 @@
       .panel-heading
         .row
           .col-lg-3
-            = transfer_above.created_time
+            = transfer_above.decorated_created_time
           .col-lg-3
-            = t(".sender", full_name: transfer_above.sender_full_name)
+            = t(".sender", full_name: transfer_above.sender_name)
       .panel-body
         table.table.table-hover.table-index width="100%"
           tbody
             tr
               td.text-center = t ".sender_info"
-              = render "transfers/transfer_info/sender_above", sender: transfer_above.sender
+              = render "transfers/transfer_info/sender_above", sender: transfer_above.sender_object
 

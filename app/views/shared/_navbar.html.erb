@@ -19,8 +19,8 @@
             active_when: { controller: "admin/exchanges" } %>
           <%= navbar_link_to t(".transfers_management"), admin_transfers_path,
             active_when: { controller: "admin/transfers", action: "index" }%>
-          <%= navbar_link_to t(".add_high_transfer"), new_admin_transfer_path,
-            active_when: { controller: "admin/transfers", action: /new|create/ }%>
+          <%= navbar_link_to t(".add_high_transfer"), new_admin_high_transfer_path,
+            active_when: { controller: "admin/high_transfers", action: /new|create/ }%>
         <% when normal_user? %>
           <%= navbar_link_to t(".sender_list"), senders_path,
             active_when: {controller: "senders", action: "index"} %>

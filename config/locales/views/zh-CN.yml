@@ -63,11 +63,10 @@ zh-CN:
     yen_to_rmb: &yen_to_rmb 円から元
     rmb_to_yen: &rmb_to_yen 元から円
     create: &create 作成する
-    add_high_transfer: &add_high_transfer 送金（１０００＄以上）の登録
+    add_high_transfer: &add_high_transfer 送金（１００００＄以上）の登録
     user: &user ユーザー
-    purchase:
-      jpy: &jpy 円買取
-      cny: &cny 元買取
+    buy_jpy: &buy_jpy 円買取
+    buy_cny: &buy_cny 元買取
   time:
     formats:
       date_format: "%Y年%-m月%-d日"
@@ -199,8 +198,9 @@ zh-CN:
         wechat: *wechat
         occupation: "職業: %{occupation}"
       sender_above:
-        full_name: *full_name
+        name: *name
         phone: *phone
+        wechat: *wechat
       recipient:
         full_name: *full_name
         email: *email
@@ -357,6 +357,19 @@ zh-CN:
         account_number: *account_number
         recipent_name: *recipent_name
         currency: *currency
+    high_transfers:
+      new:
+        title: *add_high_transfer
+        submit: *create
+      form:
+        user: *user
+        choose_user: ユーザーを選択してください
+        yen_to_rmb: *yen_to_rmb
+        rmb_to_yen: *rmb_to_yen
+        jpy: *jpy
+        cny: *cny
+        amount: *amount
+        guaranteed_rate: *guaranteed_rate
   static_pages:
     help:
       title: ヘルプ
