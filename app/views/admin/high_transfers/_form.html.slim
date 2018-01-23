@@ -1,0 +1,34 @@
+.panel.panel-default
+  .panel-heading
+    = t(".user")
+  .panel-body
+    = f.input :user_id, collection: user_options, label: t(".user"),
+      prompt: t(".choose_user")
+.panel.panel-default
+  .panel-heading#payment_title
+    .from-yen class="#{support.from_jpy? ? 'active' : 'hidden'}"
+      = t(".yen_to_rmb")
+    .from-rmb class="#{support.from_jpy? ? 'hidden' : 'active'}"
+      = t(".rmb_to_yen")
+  .panel-body
+    .row
+      .col-lg-6
+        .exchange_currency
+          span.from_ensign
+            = render "shared/#{support.from_currency}_ensign", data: support.jpy_data
+          i.fa.fa-exchange.btn.btn-success
+          span.to_ensign
+            = render "shared/#{support.to_currency}_ensign", data: support.cny_data
+    = f.input :amount, wrapper: :vertical_input_group,
+      label: t(".amount") do
+      = f.input_field :amount, class: "form-control", id: "amount"
+      span.input-group-addon.amount
+        span.from_unit
+          = t(".#{support.from_currency}")
+    = f.input :guaranteed_rate, input_html: {id: "guaranteed_rate"},
+      label: t(".guaranteed_rate")
+    = f.hidden_field :currency, value: support.from_currency,
+      id: "sender_currency"
+    input#recipient_currency.hidden value=support.to_currency
+    span.to_unit.hidden
+      = t(".#{support.to_currency}")

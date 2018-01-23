@@ -12,14 +12,18 @@
               th = t(".rate")
               th = t(".user")
           tbody
-            = render partial: "transfer", collection: jpy_transfers
+            = render partial: "high_transfer", collection: jpy_transfers
       .col-lg-6
         table.table.table-bordered.table-hover.table-index.table-striped width="100%"
           thead
             tr
               th
               th = t(".amount")
-              th = t(".purchase")
+              th = t(".rate")
               th = t(".user")
           tbody
-            = render partial: "transfer", collection: cny_transfers
+            = render partial: "high_transfer", collection: cny_transfers
+    - unless admin?
+      .row
+        = link_to t(".above"), new_transfer_path(kind: "above"),
+          class: "btn btn-success form-control center-block"
